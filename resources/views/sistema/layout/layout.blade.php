@@ -8,6 +8,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="{{asset('plantilla/img/logo/logo.png')}}" rel="icon">
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
   <title>Project-ATV</title>
   <link href="{{asset('plantilla/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('plantilla/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
@@ -55,7 +57,7 @@
   <script src="{{asset('plantilla/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{asset('plantilla/js/ruang-admin.min.js')}}"></script>
   <script src="{{asset('plantilla/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script>  
+  <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script>
   @stack('js')
 </body>
 
