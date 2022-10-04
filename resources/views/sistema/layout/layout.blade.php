@@ -25,7 +25,6 @@
 
   <div id="wrapper">
      {{-- menu  --}}
-
      @include('sistema.layout.menu')
      {{-- end menu --}}
     <div id="content-wrapper" class="d-flex flex-column">
@@ -34,7 +33,9 @@
         @include('sistema.layout.nav')
         <!-- /navegacion superior -->
         {{-- contenido  --}}
+       
         @yield('contenido')
+
         {{-- end contenido --}}
 
       </div>
@@ -58,12 +59,12 @@
   </a>
 
 </div>
-
+  <script src="{{ asset('js/app.js') }}" ></script>
   <script src="{{asset('plantilla/vendor/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('plantilla/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('plantilla/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{asset('plantilla/js/ruang-admin.min.js')}}"></script>
-  <script src="{{ asset('js/app.js') }}" ></script>
+
 
   {{-- <script src="{{asset('plantilla/vendor/chart.js/Chart.min.js')}}"></script>
   <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script> --}}

@@ -44,10 +44,10 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="ui-colors.html">
+    <li class="nav-item"  v-on:click="menu=1">
+      <a class="nav-link"  href="#">
         <i class="fas fa-fw fa-palette"></i>
-        <span>UI Colors</span>
+        <span>Clientes</span>
       </a>
     </li>
     <hr class="sidebar-divider">

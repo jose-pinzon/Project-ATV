@@ -19,10 +19,8 @@ Route::get('/', function () {
 });
 
 
-// Route::get('{any}', function () {
-//     return view('layouts.app');
-// })->where('any', '.*');
-
+//modulo clientes
+Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes');
 
 Auth::routes();
 
