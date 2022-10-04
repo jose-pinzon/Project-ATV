@@ -44,7 +44,7 @@
         </div>
       </div>
     </li>
-    <li class="nav-item"  v-on:click="menu=1">
+    <li class="nav-item" >
       <a class="nav-link"  href="#">
         <i class="fas fa-fw fa-palette"></i>
         <span>Clientes</span>

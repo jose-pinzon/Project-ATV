@@ -23,6 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('sistema.vistas.contenido');
+        return view('sistema.vistas.escritorio.escritorio');
     }
 }

@@ -11,7 +11,7 @@ Vue.component('clientes-component', require('./modules/Clientes/Cliente.vue').de
 const app = new Vue({
     el: '#app',
     data:{
-    menu:0,
+  
     }
    
 });
