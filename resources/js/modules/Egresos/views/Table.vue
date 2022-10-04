@@ -43,15 +43,15 @@
 <script>
 export default {
 
-    // data(){
-    //     mensaje:''
-    // },
-    // methods:{
-    //     mostrarMensaje(){
-    //         alert('Hola desde el boton de tabla')
-    //     }
+    data(){
+        mensaje:''
+    },
+    methods:{
+        mostrarMensaje(){
+            alert('Hola desde el boton de tabla')
+        }
 
-    // },
+    },
 }
 </script>
 
