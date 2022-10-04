@@ -19,6 +19,12 @@ Route::get('/', function () {
 });
 
 
+// Route::get('{any}', function () {
+//     return view('layouts.app');
+// })->where('any', '.*');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/egresos', [App\Http\Controllers\EgresosController ::class, 'index'])->name('egresos.index');
