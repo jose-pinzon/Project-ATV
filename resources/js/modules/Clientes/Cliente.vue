@@ -34,7 +34,7 @@
             </thead>
             <tbody>
               <tr v-for="cliente in clientes" :key="cliente.id_cliente">
-                <td><a href="#">{{cliente.id_cliente}}</a></td>
+                <td><a href="#" @click="editCliente(cliente)">{{cliente.id_cliente}}</a></td>
                 <td>{{cliente.nombres}}</td>
                 <td>{{cliente.apellidos}}</td>
                 <td><span class="badge badge-success">{{cliente.telefono}}</span></td>
