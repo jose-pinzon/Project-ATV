@@ -26,5 +26,8 @@ Route::post('/clients/store', [App\Http\Controllers\ClienteController::class, 's
 Route::put('/clients/update', [App\Http\Controllers\ClienteController::class, 'update'])->name('cients/update');
 Auth::routes();
 
+//modulo de guias
+Route::get('/guias', [App\Http\Controllers\GuiaController::class, 'returnvista'])->name('guias');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/egresos', [App\Http\Controllers\EgresosController ::class, 'index'])->name('egresos.index');
