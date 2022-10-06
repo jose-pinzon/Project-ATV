@@ -20,8 +20,10 @@ Route::get('/', function () {
 
 
 //modulo clientes
-Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'index'])->name('clientes');
-
+Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'returnvista'])->name('clientes');
+Route::get('/clients', [App\Http\Controllers\ClienteController::class, 'index'])->name('cients');
+Route::post('/clients/store', [App\Http\Controllers\ClienteController::class, 'store'])->name('cients/store');
+Route::put('/clients/update', [App\Http\Controllers\ClienteController::class, 'update'])->name('cients/update');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

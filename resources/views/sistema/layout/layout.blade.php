@@ -7,16 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>Project-ATV</title>
   <link href="{{asset('plantilla/img/logo/logo.png')}}" rel="icon">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-
-  <title>Project-ATV</title>
   <link href="{{asset('plantilla/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('plantilla/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
   <link href="{{asset('plantilla/css/ruang-admin.min.css')}}" rel="stylesheet">
   <script src="{{asset('js/vue.js')}}"></script>
+ 
 </head>
 
 <body id="page-top">
