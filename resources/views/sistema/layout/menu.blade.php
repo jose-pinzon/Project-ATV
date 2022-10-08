@@ -44,10 +44,10 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="ui-colors.html">
+    <li class="nav-item" >
+      <a class="nav-link"  href="{{route('clientes')}}">
         <i class="fas fa-fw fa-palette"></i>
-        <span>UI Colors</span>
+        <span>Clientes</span>
       </a>
     </li>
     <hr class="sidebar-divider">
