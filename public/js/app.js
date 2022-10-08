@@ -5992,19 +5992,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      clientes: [],
-      arrayDetalleCliente: [],
-      id_cliente: 0,
+      guias: [],
+      arrayDetalleGuia: [],
+      id_guia: 0,
       nombres: '',
       apellidos: '',
       telefono: '',
+      edad: 18,
       email: '',
-      nacionalidad: '',
-      pais: '',
-      ciudad: '',
+      direccion: '',
+      ingles: '',
+      estado: 1,
       //VARIABLES PAGINACION
       pagination: {
         'total': 0,
@@ -6063,13 +6081,13 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   methods: {
-    getclientes: function getclientes(page, criterio, buscar) {
+    getGuia: function getGuia(page, criterio, buscar) {
       var e = this;
-      var url = '/clients?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
+      var url = '/guias/index?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
       axios.get(url).then(function (response) {
         // handle success
         var respuesta = response.data;
-        e.clientes = respuesta.clientes.data;
+        e.guias = respuesta.guias.data;
         e.pagination = respuesta.pagination; //console.log(response.data);
       })["catch"](function (error) {
         // handle error
@@ -6083,9 +6101,9 @@ __webpack_require__.r(__webpack_exports__);
       me.pagination.current_page = page; //envia la peticion para visualizar la data en la vista
       //el page lo recibe el metodo de lista cat
 
-      me.getclientes(page, criterio, buscar);
+      me.getGuia(page, criterio, buscar);
     },
-    createCliente: function createCliente() {
+    createGuia: function createGuia() {
       var e = this;
       e.table = 0;
       e.form = 1;
@@ -6096,37 +6114,39 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.nombres) this.arrayError.push('los nombres son requeridos');
       if (!this.apellidos) this.arrayError.push('los apellidos son requeridos');
       if (!this.telefono) this.arrayError.push('El telefono es requeridos');
+      if (!this.edad) this.arrayError.push('La edad es requerido');
+      if (this.edad < 18) this.arrayError.push('Tiene que ser mayor de 18');
       if (this.arrayError.length) this.error = 1;
       return this.error; //console.log(this.arrayError)
     },
-    storeCliente: function storeCliente() {
+    storeGuia: function storeGuia() {
       if (this.validarInputs()) {
         return;
       }
 
       var e = this;
-      var url = '/clients/store';
-      var arrayCliente = {
+      var url = '/guias/store';
+      var arrayGuia = {
         'nombres': this.nombres,
         'apellidos': this.apellidos,
         'telefono': this.telefono,
         'email': this.email,
-        'nacionalidad': this.nacionalidad,
-        'pais': this.pais,
-        'ciudad': this.ciudad
+        'edad': this.edad,
+        'direccion': this.direccion,
+        'ingles': this.ingles
       };
-      axios.post(url, arrayCliente).then(function (response) {
+      axios.post(url, arrayGuia).then(function (response) {
         // handle success
         e.nombres = "";
         e.apellidos = "";
         e.telefono = "";
         e.email = "";
-        e.nacionalidad = "";
-        e.pais = "";
-        e.ciudad = "";
+        e.edad = "";
+        e.ingles = "";
+        e.direccion = "";
         e.form = 0;
         e.table = 1;
-        e.getclientes(1, e.criterio, '');
+        e.getGuia(1, e.criterio, '');
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -6141,20 +6161,20 @@ __webpack_require__.r(__webpack_exports__);
       e.apellidos = "";
       e.telefono = "";
       e.email = "";
-      e.nacionalidad = "";
-      e.pais = "";
-      e.ciudad = "";
+      e.edad = "";
+      e.direccion = "";
+      e.ingles = "";
     },
-    DetallesCliente: function DetallesCliente() {
+    DetallesGuia: function DetallesGuia() {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-      this.arrayDetalleCliente = data;
+      this.arrayDetalleGuia = data;
       this.nombres = data['nombres'];
       this.apellidos = data['apellidos'];
       this.telefono = data['telefono'];
       this.email = data['email'];
-      this.nacionalidad = data['nacionalidad'];
-      this.pais = data['pais'];
-      this.ciudad = data['ciudad'];
+      this.edad = data['edad'];
+      this.direccion = data['direccion'];
+      this.ingles = data['ingles'];
       $("#detalles").modal('show');
     },
     salirDetalles: function salirDetalles() {
@@ -6163,56 +6183,84 @@ __webpack_require__.r(__webpack_exports__);
       e.apellidos = "";
       e.telefono = "";
       e.email = "";
-      e.nacionalidad = "";
-      e.pais = "";
-      e.ciudad = "";
+      e.edad = "";
+      e.ingles = "";
+      e.direccion = "";
       $("#detalles").modal('hide');
     },
-    editCliente: function editCliente() {
+    editGuia: function editGuia() {
       var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
       $("#detalles").modal('hide');
       this.table = 0;
       this.form = 1;
       this.bandera = 2;
-      this.id_cliente = data['id_cliente'];
+      this.id_guia = data['id_guia'];
       this.nombres = data['nombres'];
       this.apellidos = data['apellidos'];
       this.telefono = data['telefono'];
       this.email = data['email'];
-      this.nacionalidad = data['nacionalidad'];
-      this.pais = data['pais'];
-      this.ciudad = data['ciudad'];
+      this.direccion = data['direccion'];
+      this.edad = data['edad'];
+      this.ingles = data['ingles'];
     },
-    updateCliente: function updateCliente() {
+    updateGuia: function updateGuia() {
       if (this.validarInputs()) {
         return;
       }
 
       var e = this;
-      var url = '/clients/update';
-      var arrayCliente = {
+      var url = '/guias/update';
+      var arrayGuia = {
         'nombres': this.nombres,
         'apellidos': this.apellidos,
         'telefono': this.telefono,
         'email': this.email,
-        'nacionalidad': this.nacionalidad,
-        'pais': this.pais,
-        'ciudad': this.ciudad,
-        'id_cliente': this.id_cliente
+        'edad': this.edad,
+        'direccion': this.direccion,
+        'ingles': this.ingles,
+        'id_guia': this.id_guia
       };
-      axios.put(url, arrayCliente).then(function (response) {
+      axios.put(url, arrayGuia).then(function (response) {
         // handle success
-        e.id_cliente = 0;
+        e.id_guia = 0;
         e.nombres = "";
         e.apellidos = "";
         e.telefono = "";
         e.email = "";
-        e.nacionalidad = "";
-        e.pais = "";
-        e.ciudad = "";
+        e.edad = "";
+        e.direccion = "";
+        e.ingles = "";
         e.form = 0;
         e.table = 1;
-        e.getclientes(1, e.criterio, '');
+        e.getGuia(1, e.criterio, '');
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    desactivar: function desactivar(id) {
+      var e = this;
+      var url = '/guias/desactivar';
+      var arrayGuia = {
+        'id_guia': id
+      };
+      axios.put(url, arrayGuia).then(function (response) {
+        // handle success
+        e.getGuia(1, e.criterio, '');
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    activar: function activar(id) {
+      var e = this;
+      var url = '/guias/activar';
+      var arrayGuia = {
+        'id_guia': id
+      };
+      axios.put(url, arrayGuia).then(function (response) {
+        // handle success
+        e.getGuia(1, e.criterio, '');
       })["catch"](function (error) {
         // handle error
         console.log(error);
@@ -6220,7 +6268,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.getclientes(1, this.criterio, this.buscar);
+    this.getGuia(1, this.criterio, this.buscar);
   }
 });
 
@@ -11576,7 +11624,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#navegador{\n  margin-left: 20px;\n}\n.flex{\n  display: flex;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#navegador{\n  margin-left: 20px;\n}\n.flex{\n  display: flex;\n}\n.estado{\n    cursor: pointer;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -30678,7 +30726,7 @@ var render = function () {
                             ) {
                               return null
                             }
-                            return _vm.getclientes(1, _vm.criterio, _vm.buscar)
+                            return _vm.getGuia(1, _vm.criterio, _vm.buscar)
                           },
                           input: function ($event) {
                             if ($event.target.composing) {
@@ -30696,11 +30744,7 @@ var render = function () {
                           attrs: { type: "button" },
                           on: {
                             click: function ($event) {
-                              return _vm.getclientes(
-                                1,
-                                _vm.criterio,
-                                _vm.buscar
-                              )
+                              return _vm.getGuia(1, _vm.criterio, _vm.buscar)
                             },
                           },
                         },
@@ -30716,7 +30760,7 @@ var render = function () {
                           staticClass: "btn btn-info",
                           on: {
                             click: function ($event) {
-                              return _vm.createCliente()
+                              return _vm.createGuia()
                             },
                           },
                         },
@@ -30735,63 +30779,110 @@ var render = function () {
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    _vm._l(_vm.clientes, function (cliente) {
-                      return _c("tr", { key: cliente.id_cliente }, [
-                        _c("td", [
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editCliente(cliente)
+                    _vm._l(_vm.guias, function (guia) {
+                      return _c(
+                        "tr",
+                        { key: guia.id_guia },
+                        [
+                          _c("td", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.editGuia(guia)
+                                  },
                                 },
                               },
-                            },
-                            [_vm._v(_vm._s(cliente.id_cliente))]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(cliente.nombres))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(cliente.apellidos))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "badge badge-success" }, [
-                            _vm._v(_vm._s(cliente.telefono)),
+                              [_vm._v(_vm._s(guia.id_guia))]
+                            ),
                           ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.DetallesCliente(cliente)
-                                },
-                              },
-                            },
-                            [_vm._v("Detales")]
-                          ),
                           _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-warning",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editCliente(cliente)
+                          _c("td", [_vm._v(_vm._s(guia.nombres))]),
+                          _vm._v(" "),
+                          _c("td", [_vm._v(_vm._s(guia.apellidos))]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("span", { staticClass: "badge badge-success" }, [
+                              _vm._v(_vm._s(guia.telefono)),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          guia.estado
+                            ? [
+                                _c(
+                                  "td",
+                                  {
+                                    staticClass: "estado",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.desactivar(guia.id_guia)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "badge badge-success" },
+                                      [_vm._v("Activo")]
+                                    ),
+                                  ]
+                                ),
+                              ]
+                            : [
+                                _c(
+                                  "td",
+                                  {
+                                    staticClass: "estado",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.activar(guia.id_guia)
+                                      },
+                                    },
+                                  },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "badge badge-danger" },
+                                      [_vm._v("Inactivo")]
+                                    ),
+                                  ]
+                                ),
+                              ],
+                          _vm._v(" "),
+                          _c("td", [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.DetallesGuia(guia)
+                                  },
                                 },
                               },
-                            },
-                            [_vm._v("Editar")]
-                          ),
-                        ]),
-                      ])
+                              [_vm._v("Detales")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-warning",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.editGuia(guia)
+                                  },
+                                },
+                              },
+                              [_vm._v("Editar")]
+                            ),
+                          ]),
+                        ],
+                        2
+                      )
                     }),
                     0
                   ),
@@ -30901,7 +30992,7 @@ var render = function () {
                       ? _c(
                           "h6",
                           { staticClass: "m-0 font-weight-bold text-primary" },
-                          [_vm._v("Nuevo cliente")]
+                          [_vm._v("Nuevo guia")]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -30909,7 +31000,7 @@ var render = function () {
                       ? _c(
                           "h6",
                           { staticClass: "m-0 font-weight-bold text-primary" },
-                          [_vm._v("Editar cliente")]
+                          [_vm._v("Editar guia")]
                         )
                       : _vm._e(),
                   ]
@@ -31062,7 +31153,7 @@ var render = function () {
                   _c("div", { staticClass: "form-row" }, [
                     _c("div", { staticClass: "col" }, [
                       _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-                        _vm._v("Nacionalidad"),
+                        _vm._v("Edad"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -31070,19 +31161,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.nacionalidad,
-                            expression: "nacionalidad",
+                            value: _vm.edad,
+                            expression: "edad",
                           },
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Nacionalidad" },
-                        domProps: { value: _vm.nacionalidad },
+                        attrs: { type: "number", placeholder: "Edad" },
+                        domProps: { value: _vm.edad },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.nacionalidad = $event.target.value
+                            _vm.edad = $event.target.value
                           },
                         },
                       }),
@@ -31090,37 +31181,59 @@ var render = function () {
                     _vm._v(" "),
                     _c("div", { staticClass: "col" }, [
                       _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-                        _vm._v("Pais"),
+                        _vm._v("Igles"),
                       ]),
                       _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.pais,
-                            expression: "pais",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "email", placeholder: "Pais" },
-                        domProps: { value: _vm.pais },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.pais = $event.target.value
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.ingles,
+                              expression: "ingles",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { name: "", id: "" },
+                          on: {
+                            change: function ($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function (o) {
+                                  return o.selected
+                                })
+                                .map(function (o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.ingles = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            },
                           },
                         },
-                      }),
+                        [
+                          _c("option", { attrs: { value: "", disabled: "" } }, [
+                            _vm._v("Elige una opción"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "SI" } }, [
+                            _vm._v("SI"),
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "NO" } }, [
+                            _vm._v("NO"),
+                          ]),
+                        ]
+                      ),
                     ]),
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-row" }, [
                     _c("div", { staticClass: "col" }, [
                       _c("label", { attrs: { for: "exampleInputPassword1" } }, [
-                        _vm._v("Ciudad"),
+                        _vm._v("Dirección"),
                       ]),
                       _vm._v(" "),
                       _c("input", {
@@ -31128,19 +31241,19 @@ var render = function () {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.ciudad,
-                            expression: "ciudad",
+                            value: _vm.direccion,
+                            expression: "direccion",
                           },
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text", placeholder: "Ciudad" },
-                        domProps: { value: _vm.ciudad },
+                        attrs: { type: "text", placeholder: "Domicilio" },
+                        domProps: { value: _vm.direccion },
                         on: {
                           input: function ($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.ciudad = $event.target.value
+                            _vm.direccion = $event.target.value
                           },
                         },
                       }),
@@ -31169,7 +31282,7 @@ var render = function () {
                           staticClass: "btn btn-primary",
                           on: {
                             click: function ($event) {
-                              return _vm.storeCliente()
+                              return _vm.storeGuia()
                             },
                           },
                         },
@@ -31184,7 +31297,7 @@ var render = function () {
                           staticClass: "btn btn-primary",
                           on: {
                             click: function ($event) {
-                              return _vm.updateCliente()
+                              return _vm.updateGuia()
                             },
                           },
                         },
@@ -31224,7 +31337,7 @@ var render = function () {
                     staticClass: "modal-title",
                     attrs: { id: "exampleModalLabel" },
                   },
-                  [_vm._v("Detalles del cliente")]
+                  [_vm._v("Detalles del guia")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -31262,6 +31375,10 @@ var render = function () {
                         ]),
                         _vm._v(" "),
                         _c("tr", [
+                          _c("th", [_vm._v("Edad: " + _vm._s(_vm.email))]),
+                        ]),
+                        _vm._v(" "),
+                        _c("tr", [
                           _c("th", [
                             _vm._v("Telefono: " + _vm._s(_vm.telefono)),
                           ]),
@@ -31273,16 +31390,14 @@ var render = function () {
                         _vm._v(" "),
                         _c("tr", [
                           _c("th", [
-                            _vm._v("Nacionalidad: " + _vm._s(_vm.nacionalidad)),
+                            _vm._v("Dirección: " + _vm._s(_vm.direccion) + " "),
                           ]),
                         ]),
                         _vm._v(" "),
                         _c("tr", [
-                          _c("th", [_vm._v("Pais: " + _vm._s(_vm.pais))]),
-                        ]),
-                        _vm._v(" "),
-                        _c("tr", [
-                          _c("th", [_vm._v("Ciudad: " + _vm._s(_vm.ciudad))]),
+                          _c("th", [
+                            _vm._v("Ingles: " + _vm._s(_vm.ingles) + " "),
+                          ]),
                         ]),
                       ]),
                     ]),
@@ -31312,7 +31427,7 @@ var render = function () {
                     attrs: { type: "button" },
                     on: {
                       click: function ($event) {
-                        return _vm.editCliente(_vm.arrayDetalleCliente)
+                        return _vm.editGuia(_vm.arrayDetalleGuia)
                       },
                     },
                   },
@@ -31339,7 +31454,7 @@ var staticRenderFns = [
       },
       [
         _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }, [
-          _vm._v("Clientes frecuentes"),
+          _vm._v("Guias"),
         ]),
       ]
     )
@@ -31357,6 +31472,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Apellidos")]),
         _vm._v(" "),
         _c("th", [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
         _vm._v(" "),
         _c("th", [_vm._v("Action")]),
       ]),

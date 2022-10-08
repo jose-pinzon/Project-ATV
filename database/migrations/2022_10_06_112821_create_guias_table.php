@@ -22,6 +22,7 @@ class CreateGuiasTable extends Migration
             $table->string('email',255)->nullable();
             $table->string('direccion',200)->nullable();
             $table->string('ingles',5)->nullable();
+            $table->boolean('estado')->default(1);
             $table->timestamps();
         });
     }

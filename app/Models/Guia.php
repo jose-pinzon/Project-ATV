@@ -21,7 +21,8 @@ class Guia extends Model
         'telefono',
         'email',
         'direccion',
-        'ingles'
+        'ingles',
+        'estado'
     ];
 
 }

@@ -28,6 +28,12 @@ Auth::routes();
 
 //modulo de guias
 Route::get('/guias', [App\Http\Controllers\GuiaController::class, 'returnvista'])->name('guias');
+Route::get('/guias/index', [App\Http\Controllers\GuiaController::class, 'index'])->name('guias/index');
+Route::post('/guias/store', [App\Http\Controllers\GuiaController::class, 'store'])->name('guias/store');
+Route::put('/guias/update', [App\Http\Controllers\GuiaController::class, 'update'])->name('guias/update');
+Route::put('/guias/activar', [App\Http\Controllers\GuiaController::class, 'activar'])->name('/guias/activar');
+Route::put('/guias/desactivar', [App\Http\Controllers\GuiaController::class, 'desactivar'])->name('guias/desactivar');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/egresos', [App\Http\Controllers\EgresosController ::class, 'index'])->name('egresos.index');
