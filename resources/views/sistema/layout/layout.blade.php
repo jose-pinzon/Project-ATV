@@ -42,9 +42,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            {{-- <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
-            </span> --}}
+            
           </div>
         </div>
       </footer>
@@ -65,8 +63,8 @@
   <script src="{{asset('plantilla/js/ruang-admin.min.js')}}"></script>
   <script src="{{ asset('js/app.js') }}" ></script>
 
-  <script src="{{asset('plantilla/vendor/chart.js/Chart.min.js')}}"></script>
-  <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script>
+  {{-- <script src="plantilla/vendor/chart.js/Chart.min.js"></script>
+  <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script> --}}
   @stack('js')
 </body>
 

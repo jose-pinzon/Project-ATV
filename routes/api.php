@@ -4,6 +4,7 @@ use App\Http\Controllers\Egresos;
 use App\Http\Controllers\EgresosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MotosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/motoAtv', MotosController::class);

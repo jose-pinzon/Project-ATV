@@ -15,10 +15,10 @@ import App from './components/App.vue'
 import VueAxios from 'vue-axios';
 import axios from 'axios';
 
-import VueRouter from 'vue-router';
-import  routes  from './routes'
+// import VueRouter from 'vue-router';
+// import  routes  from './routes'
 // import { h } from 'vue'
-Vue.use(VueRouter);
+// Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 
@@ -46,10 +46,8 @@ Vue.component('table-component', require('./modules/Egresos/views/Table.vue').de
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-const router = new VueRouter({ routes })
 const app = new Vue({
     el: '#app',
-    router,
     // render: h => h(App)
 });
 

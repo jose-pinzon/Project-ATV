@@ -1,6 +1,6 @@
 
 
-.boton {
+.boton_personal {
     background-color: transparent;
     font-weight: bold;
     color: #444;
@@ -14,12 +14,12 @@
     -.5rem -.5rem 1rem #fff    ;
 }
 
-.boton:hover{
+.boton_personal:hover{
     box-shadow:  .5rem .5rem 1rem #fff,
     -.5rem -.5rem 1rem #ccc    ;
 }
 
-.boton:active{
+.boton_personal:active{
     box-shadow: inset .2rem .2rem 1rem #fff,
     inset -.2rem -.2rem 1rem #ccc    ;
 }
