@@ -5461,10 +5461,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5474,6 +5470,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }),
     Modal: (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(function () {
       return __webpack_require__.e(/*! import() */ "resources_js_modules_Egresos_components_modal_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/modal.vue */ "./resources/js/modules/Egresos/components/modal.vue"));
+    }),
+    ModalD: (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(function () {
+      return __webpack_require__.e(/*! import() */ "resources_js_modules_Egresos_components_modalDetalle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/modalDetalle.vue */ "./resources/js/modules/Egresos/components/modalDetalle.vue"));
+    }),
+    Editar: (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(function () {
+      return __webpack_require__.e(/*! import() */ "resources_js_modules_Egresos_components_Editar_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Editar.vue */ "./resources/js/modules/Egresos/components/Editar.vue"));
     })
   },
   data: function data() {
@@ -10968,7 +10970,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido_detalles[data-v-403f8baa]{\n        box-shadow: 2px 2px 8px black;\n        border: 1px solid #ccc;\n        background-color: #ffff;\n        position: absolute;\n        margin:0 auto;\n        left:10%;\n        bottom: 30%;\n        padding:2em;\n}\n.boton_personal[data-v-403f8baa] {\n    background-color: transparent;\n    font-weight: bold;\n    color: #444;\n    font-size: 1rem;\n    padding: 1rem 1.5rem;\n    border: 2px solid #eee;\n    border-radius:.5rem;\n    cursor: pointer;\n    transition: all 1s ease;\n    box-shadow:  .5rem .5rem 1rem #ccc,\n    -.5rem -.5rem 1rem #fff    ;\n}\n.boton_personal[data-v-403f8baa]:hover{\n    box-shadow:  .2rem .2rem 1rem #fff,\n    -.5rem -.5rem 1rem #ccc    ;\n}\n.boton_personal[data-v-403f8baa]:active{\n    box-shadow: inset .2rem .2rem 1rem #fff,\n    inset -.2rem -.2rem 1rem #ccc    ;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido_detalles[data-v-403f8baa]{\n        box-shadow: 1px 1px 8px black;\n        border: 1px solid #ccc;\n        background-color: #ffff;\n        position: fixed;\n        margin:0 auto;\n        left:10%;\n        bottom: 40%;\n        padding:3em;\n        width:50%;\n}\n.boton_personal[data-v-403f8baa] {\n    background-color: transparent;\n    font-weight: bold;\n    color: #444;\n    font-size: 1rem;\n    padding: 1rem 1.5rem;\n    border: 2px solid #eee;\n    border-radius:.5rem;\n    cursor: pointer;\n    transition: all 1s ease;\n    box-shadow:  .5rem .5rem 1rem #ccc,\n    -.5rem -.5rem 1rem #fff ;\n    float: left;\n}\n.fix[data-v-403f8baa]{\n    float: none;\n    clear:both;\n}\n.boton_personal[data-v-403f8baa]:hover{\n    box-shadow:  .2rem .2rem 1rem #fff,\n    -.5rem -.5rem 1rem #ccc    ;\n}\n.boton_personal[data-v-403f8baa]:active{\n    box-shadow: inset .2rem .2rem 1rem #fff,\n    inset -.2rem -.2rem 1rem #ccc    ;\n}\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -29684,35 +29686,19 @@ var render = function () {
       _vm.detallesMoto
         ? _c(
             "section",
+            { staticClass: "contenido_detalles" },
             [
-              _c("Modal", {
-                scopedSlots: _vm._u(
-                  [
-                    {
-                      key: "Titulo",
-                      fn: function () {
-                        return [
-                          _vm._v(
-                            " \n            " +
-                              _vm._s(_vm.detallesMoto.atv) +
-                              "\n        "
-                          ),
-                        ]
-                      },
-                      proxy: true,
-                    },
-                  ],
-                  null,
-                  false,
-                  1850623769
-                ),
-              }),
+              _c("Editar", { attrs: { datos: _vm.detallesMoto } }),
               _vm._v(" "),
               _c(
                 "button",
                 { staticClass: "boton_personal", on: { click: _vm.Regresar } },
                 [_vm._v("No mostrar")]
               ),
+              _vm._v(" "),
+              _c("ModalD"),
+              _vm._v(" "),
+              _c("div", { staticClass: "fix" }),
             ],
             1
           )
@@ -41880,7 +41866,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_modules_Egresos_components_filas_vue":1,"resources_js_modules_Egresos_components_modal_vue":1,"resources_js_modules_Egresos_components_estado_vue":1,"resources_js_modules_Egresos_components_modalDetalle_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_modules_Egresos_components_filas_vue":1,"resources_js_modules_Egresos_components_modal_vue":1,"resources_js_modules_Egresos_components_modalDetalle_vue":1,"resources_js_modules_Egresos_components_Editar_vue":1,"resources_js_modules_Egresos_components_estado_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

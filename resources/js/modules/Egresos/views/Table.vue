@@ -122,16 +122,12 @@
         </div>
     </section>
 
-    <section  v-if="detallesMoto" >
-
-        <Modal>
-            <template v-slot:Titulo> 
-                {{detallesMoto.atv}}
-            </template>
-
-        </Modal>
-
+    <section  v-if="detallesMoto"  class="contenido_detalles" >
+        <Editar :datos="detallesMoto"></Editar>
         <button  class="boton_personal" @click="Regresar">No mostrar</button>
+        <ModalD></ModalD>
+
+        <div class="fix"> </div>
     </section>
     </div>
 </template>
@@ -147,6 +143,8 @@
         components:{
             Fila: defineAsyncComponent(() => import('../components/filas.vue')),
             Modal: defineAsyncComponent(() => import('../components/modal.vue')),
+            ModalD: defineAsyncComponent(() => import('../components/modalDetalle.vue')),
+            Editar: defineAsyncComponent(() => import('../components/Editar.vue'))
         },
         data(){
             return{
@@ -233,14 +231,15 @@
 
 <style scoped>
     .contenido_detalles{
-        box-shadow: 2px 2px 8px black;
+        box-shadow: 1px 1px 8px black;
         border: 1px solid #ccc;
         background-color: #ffff;
-        position: absolute;
+        position: fixed;
         margin:0 auto;
         left:10%;
-        bottom: 30%;
-        padding:2em;
+        bottom: 40%;
+        padding:3em;
+        width:50%;
     }
 
 
@@ -256,7 +255,12 @@
     cursor: pointer;
     transition: all 1s ease;
     box-shadow:  .5rem .5rem 1rem #ccc,
-    -.5rem -.5rem 1rem #fff    ;
+    -.5rem -.5rem 1rem #fff ;
+    float: left;
+}
+.fix{
+    float: none;
+    clear:both;
 }
 
 .boton_personal:hover{
