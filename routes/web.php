@@ -34,6 +34,14 @@ Route::put('/guias/update', [App\Http\Controllers\GuiaController::class, 'update
 Route::put('/guias/activar', [App\Http\Controllers\GuiaController::class, 'activar'])->name('/guias/activar');
 Route::put('/guias/desactivar', [App\Http\Controllers\GuiaController::class, 'desactivar'])->name('guias/desactivar');
 
+//modulo de horario
+Route::get('/horarios', [App\Http\Controllers\HorarioController::class, 'returnvista'])->name('horarios');
+Route::get('/horarios/index', [App\Http\Controllers\HorarioController::class, 'index'])->name('horarios/index');
+Route::post('/horarios/store', [App\Http\Controllers\HorarioController::class, 'store'])->name('horarios/store');
+Route::put('/horarios/update', [App\Http\Controllers\HorarioController::class, 'update'])->name('horarios/update');
+Route::put('/horarios/activar', [App\Http\Controllers\HorarioController::class, 'activar'])->name('/horarios/activar');
+Route::put('/horarios/desactivar', [App\Http\Controllers\HorarioController::class, 'desactivar'])->name('horarios/desactivar');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/egresos', [App\Http\Controllers\EgresosController ::class, 'index'])->name('egresos.index');

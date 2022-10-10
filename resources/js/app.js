@@ -7,6 +7,7 @@ Vue.use(axios);
 Vue.component('table-component', require('./modules/Egresos/views/Table.vue').default);
 Vue.component('clientes-component', require('./modules/Clientes/Cliente.vue').default);
 Vue.component('guias-component', require('./modules/Guias/Guia.vue').default);
+Vue.component('horarios-component', require('./modules/Horarios/Horario.vue').default);
 //estructura vue js
 
 const app = new Vue({
