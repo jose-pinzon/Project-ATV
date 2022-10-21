@@ -37,17 +37,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     detalles: {
@@ -150,19 +139,6 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("section", [
     _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        attrs: {
-          "data-toggle": "modal",
-          "data-target": "#exampleModalScrollable",
-          id: "#myBtn",
-        },
-      },
-      [_vm._v("\n                  Ver detalles\n    ")]
-    ),
-    _vm._v(" "),
-    _c(
       "div",
       {
         staticClass: "modal fade",
@@ -183,29 +159,28 @@ var render = function () {
           },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _c("h5", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Title"),
-                ]),
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.datosDetalle) +
-                    "\n              "
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalScrollableTitle" },
+                  },
+                  [_vm._t("Titulo")],
+                  2
                 ),
-                _c("h5", { staticClass: "font-weight-bold" }, [
-                  _vm._v("Title"),
-                ]),
                 _vm._v(" "),
-                _c("p", [
-                  _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore\n                et dolore magna aliqua. Lacinia quis vel eros donec. Nec tincidunt praesent semper feugiat nibh sed\n                pulvinar proin gravida. Urna cursus eget nunc scelerisque viverra mauris in. Risus sed vulputate\n                odio ut enim blandit volutpat maecenas. Etiam sit amet nisl purus in mollis nunc. Aliquet bibendum\n                enim facilisis gravida neque convallis a. Aliquam id diam maecenas ultricies mi eget mauris. Et\n                malesuada fames ac turpis egestas sed. Venenatis cras sed felis eget."
-                  ),
-                ]),
+                _vm._m(0),
               ]),
               _vm._v(" "),
-              _vm._m(1),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                [_vm._t("contenido")],
+                2
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }),
             ]),
           ]
         ),
@@ -218,50 +193,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        {
-          staticClass: "modal-title",
-          attrs: { id: "exampleModalScrollableTitle" },
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close",
         },
-        [_vm._v("Modal scrollable title")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close",
-          },
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      ),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-footer" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary",
-          attrs: { type: "button", "data-dismiss": "modal" },
-        },
-        [_vm._v("Close")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary", attrs: { type: "button" } },
-        [_vm._v("Save changes")]
-      ),
-    ])
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
 ]
 render._withStripped = true

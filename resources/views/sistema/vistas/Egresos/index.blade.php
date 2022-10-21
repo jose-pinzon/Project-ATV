@@ -19,10 +19,19 @@
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary"> Tabla de egresos </h6>
               </div>
+
               <div class="table-responsive">
                     <table-component></table-component>
               </div>
-              <div class="card-footer"></div>
+              <div class="card-footer">
+                <a href="{{route('egreso.vista')}}" class="btn btn-warning btn-icon-split">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-flag"></i>
+                    </span>
+                    <span class="text">Agregar egreso</span>
+                </a>
+
+              </div>
             </div>
           </div>
         </div>

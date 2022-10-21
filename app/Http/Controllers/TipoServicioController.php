@@ -14,7 +14,7 @@ class TipoServicioController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**

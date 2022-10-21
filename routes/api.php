@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EgresoController;
 use App\Http\Controllers\Egresos;
 use App\Http\Controllers\EgresosController;
 use Illuminate\Http\Request;
@@ -23,4 +24,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/motoAtv',[ MotosController::class, 'store']);
+Route::get('/motoAtv/{motos}',[ MotosController::class, 'show']);
+Route::put('/motoAtv/{motos}',[ MotosController::class, 'update']);
+Route::delete('/motoAtv/{motos}',[ MotosController::class, 'destroy']);
 Route::apiResource('/motoAtv', MotosController::class);
+Route::get('/motos',[ MotosController::class, 'create']);
+
+
+Route::post('/egresoAtv',[ EgresoController::class, 'store']);
+Route::get('/egresoAtv',[ EgresoController::class, 'index']);
+
+
+

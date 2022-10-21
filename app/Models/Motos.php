@@ -18,7 +18,7 @@ class Motos extends Model
         'propietario',
         'marca',
         'modelo',
-        'color',
+        'color'
     ];
 
 

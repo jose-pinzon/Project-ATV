@@ -15,7 +15,7 @@ class CreateMotosTable extends Migration
     {
         Schema::create('motos', function (Blueprint $table) {
             $table->id();
-            $table->integer('numero_Atv');
+            $table->integer('numero_Atv')->unique();
             $table->integer('max_velocidad');
             $table->string('placa');
             $table->string('num_serie');
@@ -24,6 +24,7 @@ class CreateMotosTable extends Migration
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
+            $table->boolean('activa')->default(true);
             $table->timestamps();
         });
     }

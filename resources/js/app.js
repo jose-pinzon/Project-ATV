@@ -10,15 +10,9 @@ window.Vue = require('vue').default;
 
 import App from './components/App.vue'
 
-
 // importar axios
 import VueAxios from 'vue-axios';
 import axios from 'axios';
-
-// import VueRouter from 'vue-router';
-// import  routes  from './routes'
-// import { h } from 'vue'
-// Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 
 
@@ -35,8 +29,10 @@ Vue.use(VueAxios, axios);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('table-component', require('./modules/Egresos/views/Table.vue').default);
+Vue.component('moment', require('./components/moments.vue').default);
+Vue.component('agregar-egreso', require('./modules/Egresos/views/agregarEgreso.vue').default);
+Vue.component('tabla-egresos', require('./modules/Egresos/views/TablaEgreso.vue').default);
 
 
 
@@ -48,9 +44,6 @@ Vue.component('table-component', require('./modules/Egresos/views/Table.vue').de
  */
 const app = new Vue({
     el: '#app',
-    // render: h => h(App)
+
 });
 
-// const app = new Vue({
-//     router
-// }).$mount('#app')

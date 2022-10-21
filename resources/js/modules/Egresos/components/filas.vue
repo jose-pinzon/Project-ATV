@@ -9,7 +9,11 @@
             <td>{{ d.propietario }}</td>
             <td>
                 <estado :estado="d.estado"></estado>
-                <a @click="$emit('buttonEditar', d)" class="btn btn-sm btn-primary">Detail</a>
+
+            </td>
+            <td>
+                <a @click="$emit('buttonEditar', d)" class="btn btn-sm btn-primary text-white">Detail</a>
+                <a @click="$emit('buttonEliminar', d.id)" class="btn btn-sm btn-danger text-white">Eliminar</a>
             </td>
         </tr>
     </tbody>

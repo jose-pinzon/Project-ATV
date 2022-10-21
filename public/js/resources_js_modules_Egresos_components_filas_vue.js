@@ -31,6 +31,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'filas',
@@ -152,26 +156,35 @@ var render = function () {
         _vm._v(" "),
         _c("td", [_vm._v(_vm._s(d.propietario))]),
         _vm._v(" "),
-        _c(
-          "td",
-          [
-            _c("estado", { attrs: { estado: d.estado } }),
-            _vm._v(" "),
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-sm btn-primary",
-                on: {
-                  click: function ($event) {
-                    return _vm.$emit("buttonEditar", d)
-                  },
+        _c("td", [_c("estado", { attrs: { estado: d.estado } })], 1),
+        _vm._v(" "),
+        _c("td", [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-sm btn-primary text-white",
+              on: {
+                click: function ($event) {
+                  return _vm.$emit("buttonEditar", d)
                 },
               },
-              [_vm._v("Detail")]
-            ),
-          ],
-          1
-        ),
+            },
+            [_vm._v("Detail")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-sm btn-danger text-white",
+              on: {
+                click: function ($event) {
+                  return _vm.$emit("buttonEliminar", d.id)
+                },
+              },
+            },
+            [_vm._v("Eliminar")]
+          ),
+        ]),
       ])
     }),
     0
