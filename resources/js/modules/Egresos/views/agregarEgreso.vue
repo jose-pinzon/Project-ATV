@@ -43,7 +43,7 @@
             <section class="row justify-content-center">
                 <div class="col-md-4">
                     <label >
-                        Colocar cantidad usada:</label>
+                        Colocar cantidad usada :</label>
                         <input type="number" class="form-control" v-model="ValoresEgreso.cantidad">
                 </div>
                 <!-- <div class="col-md-4">

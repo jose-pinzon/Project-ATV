@@ -8,8 +8,7 @@
             <td>{{ d.num_serie }}</td>
             <td>{{ d.propietario }}</td>
             <td>
-                <estado :estado="d.estado"></estado>
-
+                <estado :estado="d.activa" :moto_id="d.id"></estado>
             </td>
             <td>
                 <a @click="$emit('buttonEditar', d)" class="btn btn-sm btn-primary text-white">Detail</a>

@@ -9,6 +9,15 @@ use Illuminate\Validation\Rule;
 class MotosController extends Controller
 {
 
+    public function cambiarEstado(Request $request,Motos $motos){
+        //!Leer nuevo estado
+        $motos->activa = $request->estado;
+        //!Guardarlo en la base de datos
+        $motos->save();
+        return response()->json(['res' => 'Correcto']);
+    }
+
+
 
     public function vistaMotos(){
         return view('sistema.vistas.Egresos.index');

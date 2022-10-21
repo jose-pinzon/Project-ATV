@@ -5461,6 +5461,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -5473,6 +5477,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       total: 0,
+      totalpage: 0,
       Egresos: null,
       pagination: {
         'total': 0,
@@ -5493,6 +5498,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   mounted: function mounted() {
     this.obtenerDatos();
+    this.obtenerDatosEgreTotal();
   },
   methods: {
     obtenerDatos: function obtenerDatos(page) {
@@ -5518,7 +5524,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   total += parseFloat(e.cantidad);
                 });
 
-                _this.total = total;
+                _this.totalpage = total;
 
               case 8:
               case "end":
@@ -5526,6 +5532,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    obtenerDatosEgreTotal: function obtenerDatosEgreTotal() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _yield$AtvApi$get2, data, total;
+
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _api_AtvApi__WEBPACK_IMPORTED_MODULE_0__["default"].get("/egresos");
+
+              case 2:
+                _yield$AtvApi$get2 = _context2.sent;
+                data = _yield$AtvApi$get2.data;
+                total = 0;
+                data.forEach(function (e) {
+                  total += parseFloat(e.cantidad);
+                });
+                _this2.total = total;
+
+              case 7:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     },
     cambiarpagina: function cambiarpagina(page) {
@@ -11781,7 +11817,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido-gasto[data-v-79df2e37]{\n        width: 40%;\n        text-align: left;\n        margin-left:60% ;\n}\n.h-gasto[data-v-79df2e37]{\n        margin-right: 10%;\n        margin-top:2%;\n        font-size: 20px;\n}\n/*\n    nav ul{\n        width: 15%;\n        border: 1px solid #ccc;\n    }\n    nav ul li{\n        border: 1px solid #ccc;\n        padding: 4px;\n        text-decoration: none;\n    } */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido-gasto[data-v-79df2e37]{\n        width: 80%;\n        text-align: left;\n        margin-left:50% ;\n}\n.c-gasto[data-v-79df2e37]{\n        display: block;\n        float: left;\n        margin:10px;\n}\n.h-gasto[data-v-79df2e37]{\n        margin-right: 10%;\n        margin-top:2%;\n        font-size: 20px;\n}\n/*\n    nav ul{\n        width: 15%;\n        border: 1px solid #ccc;\n    }\n    nav ul li{\n        border: 1px solid #ccc;\n        padding: 4px;\n        text-decoration: none;\n    } */\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52006,19 +52042,31 @@ var render = function () {
               ),
             ]),
             _vm._v(" "),
-            _vm.total
-              ? _c("div", { staticClass: "contenido-gasto" }, [
-                  _c("h2", { staticClass: "h-gasto" }, [
-                    _vm._v(" gasto total: "),
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    staticClass: "form-control",
-                    attrs: { type: "text", disabled: "" },
-                    domProps: { value: _vm.total },
-                  }),
-                ])
-              : _vm._e(),
+            _c("section", { staticClass: "contenido-gasto" }, [
+              _c("div", { staticClass: "c-gasto" }, [
+                _c("h2", { staticClass: "h-gasto" }, [
+                  _vm._v(" gasto total: "),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", disabled: "" },
+                  domProps: { value: _vm.total },
+                }),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "c-gasto" }, [
+                _c("h2", { staticClass: "h-gasto" }, [
+                  _vm._v(" gasto por pagina: "),
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "text", disabled: "" },
+                  domProps: { value: _vm.totalpage },
+                }),
+              ]),
+            ]),
           ]),
         ]),
       ]),
@@ -52079,8 +52127,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "thead-light" }, [
       _c("tr", [
-        _c("th", [_vm._v("id")]),
-        _vm._v(" "),
         _c("th", [_vm._v("TIPO GASTO")]),
         _vm._v(" "),
         _c("th", [_vm._v("DETALLE GASTO")]),
@@ -54165,7 +54211,7 @@ var render = function () {
         _c("section", { staticClass: "row justify-content-center" }, [
           _c("div", { staticClass: "col-md-4" }, [
             _c("label", [
-              _vm._v("\n                    Colocar cantidad usada:"),
+              _vm._v("\n                    Colocar cantidad usada :"),
             ]),
             _vm._v(" "),
             _c("input", {

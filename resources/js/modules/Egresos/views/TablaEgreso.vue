@@ -26,7 +26,6 @@
                   <table class="table align-items-center table-flush" id="dataTable" v-if="Egresos">
                     <thead class="thead-light">
                       <tr>
-                        <th>id</th>
                         <th>TIPO GASTO</th>
                         <th>DETALLE GASTO</th>
                         <th>CANTIDAD</th>
@@ -83,12 +82,17 @@
 
                 </ul>
             </nav>
+                <section class="contenido-gasto">
+                    <div class="c-gasto">
+                        <h2 class="h-gasto"> gasto total: </h2>
+                        <input class="form-control" type="text" :value="total" disabled >
+                    </div>
+                    <div class="c-gasto">
+                        <h2 class="h-gasto"> gasto por pagina: </h2>
+                        <input class="form-control" type="text" :value="totalpage" disabled >
+                    </div>
 
-                <div  v-if="total" class="contenido-gasto">
-                    <h2 class="h-gasto"> gasto total: </h2>
-
-                    <input class="form-control" type="text" :value="total" disabled >
-                </div>
+                </section>
 
 
                     <!-- TODO: icono de cargar -->
@@ -98,7 +102,7 @@
                 </div>
               </div>
             </div>
-          </div>
+        </div>
             <!-- DataTable with Hover -->
         </section>
 </template>
@@ -115,6 +119,7 @@ export default {
     data(){
         return{
             total:0,
+            totalpage:0,
             Egresos:null,
             pagination:{
                 'total':0,
@@ -129,6 +134,7 @@ export default {
     },
     mounted(){
         this.obtenerDatos()
+        this.obtenerDatosEgreTotal()
     },
     methods:{
         async obtenerDatos(page){
@@ -141,8 +147,20 @@ export default {
                 total += parseFloat( e.cantidad)
             });
 
+            this.totalpage = total
+        },
+
+        async obtenerDatosEgreTotal(){
+            const { data } = await AtvApi.get(`/egresos`)
+
+            let total = 0
+            data.forEach(e => {
+                total += parseFloat( e.cantidad)
+            });
+
             this.total = total
         },
+
         cambiarpagina(page){
             this.pagination.current_page = page
             this.obtenerDatos(page)
@@ -185,9 +203,14 @@ export default {
 
 <style scoped>
     .contenido-gasto{
-        width: 40%;
+        width: 80%;
         text-align: left;
-        margin-left:60% ;
+        margin-left:50% ;
+    }
+    .c-gasto{
+        display: block;
+        float: left;
+        margin:10px;
     }
     .h-gasto{
         margin-right: 10%;

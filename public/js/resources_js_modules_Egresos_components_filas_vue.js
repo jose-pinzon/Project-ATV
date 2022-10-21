@@ -34,7 +34,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'filas',
@@ -156,7 +155,11 @@ var render = function () {
         _vm._v(" "),
         _c("td", [_vm._v(_vm._s(d.propietario))]),
         _vm._v(" "),
-        _c("td", [_c("estado", { attrs: { estado: d.estado } })], 1),
+        _c(
+          "td",
+          [_c("estado", { attrs: { estado: d.activa, moto_id: d.id } })],
+          1
+        ),
         _vm._v(" "),
         _c("td", [
           _c(

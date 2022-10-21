@@ -29,7 +29,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -135,8 +134,6 @@ var render = function () {
     "tbody",
     _vm._l(_vm.datosEgresos, function (egreso) {
       return _c("tr", { key: egreso.id }, [
-        _c("td", [_vm._v(_vm._s(egreso.id))]),
-        _vm._v(" "),
         _c("td", [_vm._v(_vm._s(egreso.tipo_gasto))]),
         _vm._v(" "),
         _c("td", [_vm._v(_vm._s(egreso.gasto))]),

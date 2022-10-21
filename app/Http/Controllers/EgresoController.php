@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class EgresoController extends Controller
 {
+    public function datosCompletosEgresos(){
+        $egresos = Egreso::all();
+        return Response()->json($egresos, 200);
+    }
 
     public function vista(){
         return view('sistema.vistas.Egresos.DatosEgresos');
@@ -19,7 +23,6 @@ class EgresoController extends Controller
      */
     public function index(Request $request)
     {
-        // $egresos = Egreso::orderBy('id', 'DESC')->paginate(5);
         $egresos = Egreso::orderBy('id','DESC')->paginate(4);
 
         return[
@@ -42,8 +45,7 @@ class EgresoController extends Controller
      */
     public function create()
     {
-        $motos = Motos::all();
-        return view('sistema.vistas.Egresos.agregarEgreso',compact('motos'));
+        return view('sistema.vistas.Egresos.agregarEgreso');
     }
 
     /**
@@ -82,6 +84,8 @@ class EgresoController extends Controller
     {
         //
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

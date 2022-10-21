@@ -2,7 +2,6 @@
         <tbody>
 
                     <tr v-for="egreso in datosEgresos" :key="egreso.id">
-                        <td>{{egreso.id}}</td>
                         <td>{{egreso.tipo_gasto}}</td>
                         <td>{{egreso.gasto}}</td>
                         <td>{{egreso.cantidad}} Pesos</td>
