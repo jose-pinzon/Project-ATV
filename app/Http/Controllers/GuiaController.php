@@ -118,4 +118,8 @@ class GuiaController extends Controller
    {
        //
    }
+   public function guiasSelect(){
+    $guias = Guia::where('estado','=',1)->get();
+    return $guias;
+   }
 }

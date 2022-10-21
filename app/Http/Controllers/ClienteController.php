@@ -101,4 +101,17 @@ class ClienteController extends Controller
     {
         //
     }
+
+    public function selectCliente(Request $request)
+    {
+        $filtro = $request->filtro;
+
+        $clientes = Cliente::where('nombres', 'LIKE', '%'. $filtro .'%')
+                                ->orWhere('apellidos', 'Like', '%'. $filtro .'%')
+                                ->select('id_cliente', 'nombres', 'apellidos')
+                                ->orderBy('nombres', 'ASC')->get();
+
+
+        return ['clientes' => $clientes];
+    }
 }

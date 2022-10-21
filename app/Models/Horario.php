@@ -5,24 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Guia extends Model
+class Horario extends Model
 {
     use HasFactory;
 
-    protected $table = 'guias';
-    protected $primaryKey= 'id_guia';
+    protected $table = 'horarios';
+    protected $primaryKey= 'id_horario';
     public $incremeting=true;
     public $timestamps=true;
     protected $fillable = [
-        'id_guia',
-        'nombres',
-        'apellidos',
-        'edad',
-        'telefono',
-        'email',
-        'direccion',
-        'ingles',
+        'start',
+        'end',
         'estado',
     ];
-
 }

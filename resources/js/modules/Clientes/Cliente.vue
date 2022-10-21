@@ -285,6 +285,7 @@ export default {
           const e = this;
           e.table=0;
           e.form=1;
+          e.bandera=1;
         },
         validarInputs(){
           this.error = 0;
@@ -348,6 +349,7 @@ export default {
           e.nacionalidad = "";
           e.pais = "";
           e.ciudad = "";
+          e.arrayError=[];
         },
         DetallesCliente(data=[]){
           this.arrayDetalleCliente=data;

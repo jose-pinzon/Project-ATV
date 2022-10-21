@@ -304,6 +304,7 @@
             const e = this;
             e.table=0;
             e.form=1;
+            e.bandera=1;
           },
           validarInputs(){
             this.error = 0;
@@ -371,6 +372,7 @@
             e.edad = "";
             e.direccion = "";
             e.ingles = "";
+            e.arrayError=[];
           },
           DetallesGuia(data=[]){
             this.arrayDetalleGuia=data;
