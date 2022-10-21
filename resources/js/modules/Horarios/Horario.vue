@@ -186,6 +186,7 @@
             e.end='';
             e.estado=0;
             e.form=1;
+            e.bandera=1;
           },
           validarInputs(){
             this.error = 0;
@@ -238,6 +239,7 @@
             e.start = "";
             e.end = "";
             e.estado=0;
+            e.arrayError=[];
           },
           DetallesHorario(data=[]){
             this.arrayDetalleHorario=data;
