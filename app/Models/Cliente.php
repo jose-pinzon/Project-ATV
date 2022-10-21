@@ -21,6 +21,6 @@ class Cliente extends Model
         'email',
         'nacionalidad',
         'pais',
-        'ciudad',
+        'ciudad'
     ];
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateHorariosTable extends Migration
 {
     /**
-     * Run the migrations.
+     * correr the migrations.
      *
      * @return void
      */

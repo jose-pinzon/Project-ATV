@@ -22,7 +22,7 @@ class Guia extends Model
         'email',
         'direccion',
         'ingles',
-        'estado'
+        'estado',
     ];
 
 }
