@@ -1,7 +1,13 @@
 <?php
 
+use App\Http\Controllers\EgresoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\MotosController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EgresosController;
+use App\Http\Controllers\MotosController;
+use App\Http\Controllers\TipoServicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +61,14 @@ Route::put('/reservas/update', [App\Http\Controllers\ReservaController::class, '
 Route::put('/reservas/updateEstado', [App\Http\Controllers\ReservaController::class, 'cambiarEstado'])->name('reservas/updateEstado');
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/egresos', [App\Http\Controllers\EgresosController ::class, 'index'])->name('egresos.index');
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/Motos', [MotosController ::class, 'vistaMotos'])->name('moto.index');
+    Route::get('/addegreso', [EgresoController::class, 'create'])->name('egreso.vista');
+
+    Route::get('/Egresos', [EgresoController::class, 'vista'])->name('egreso.index');
+
+});
+

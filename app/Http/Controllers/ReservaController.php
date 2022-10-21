@@ -35,7 +35,7 @@ class ReservaController extends Controller
            ->where('reservas.fecha_reserva','=', $date)
            ->where('reservas.estado','=','PENDIENTE')
            ->orderBy('reservas.fecha_reserva','DESC')->paginate(100);
-   
+
        //retornar propiedades
        return [
            'pagination' => [
@@ -102,7 +102,7 @@ class ReservaController extends Controller
         $detalleReserva->total = $request->get('total');
         $detalleReserva->save();
 
-       
+
     }
 
     public function updateReserva(Request $request){
@@ -139,5 +139,5 @@ class ReservaController extends Controller
         $reserva->estado = 'REALIZADO';
         $reserva->update();
     }
-  
+
 }

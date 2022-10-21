@@ -48,7 +48,7 @@ class HorarioController extends Controller
     $horario->estado = '0';
     $horario->update();
    }
-   
+
    public function selectHorarios(){
     $horarios = Horario::where('estado','=',1)->get();
 

@@ -25,21 +25,21 @@ class Reserva extends Model
     ];
 
     public function horario(){
-      
+
         return $this->belongsTo(Horario::class, 'id_horario', 'id_horario');
-        
+
     }
 
     public function cliente(){
-      
+
         return $this->belongsTo(Cliente::class, 'id_cliente', 'id_cliente');
-        
+
     }
 
     public function guia(){
-      
+
         return $this->belongsTo(Guia::class, 'id_guia', 'id_guia');
-        
+
     }
 
 

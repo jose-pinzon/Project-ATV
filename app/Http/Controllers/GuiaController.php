@@ -32,13 +32,13 @@ class GuiaController extends Controller
            ->orderBy('id_guia','DESC')->paginate(5);
 
        }else{
-      
+
             $guias = Guia::select('id_guia','nombres','apellidos','telefono','email','edad','direccion','ingles','estado')
             ->where($criterio, 'like','%' . $buscar . '%')
             ->orderBy('id_guia','DESC')->paginate(5);
-   
+
        }
-   
+
        //retornar propiedades
        return [
            'pagination' => [
