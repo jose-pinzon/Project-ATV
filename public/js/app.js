@@ -8034,12 +8034,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"); //vue select
 
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['action', 'csrf'],
   data: function data() {
     return {
       //array captura reservas
@@ -8113,7 +8139,10 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       pais: '',
       ciudad: '',
       //variables ventas
-      formapago: 'TARJETA'
+      formapago: 'EFECTIVO',
+      descripcion: '',
+      m_banco: '',
+      cantidad_ingreso: 0
     };
   },
   components: {
@@ -8575,6 +8604,7 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       this.total = data['total'];
       this.id_reserva = data['id_reserva'];
       this.id_detalle_reserva = data['id_detalle_reserva'];
+      this.cantidad_ingreso = data['sencillo'] + data['doble'];
     },
     CerrarModalVender: function CerrarModalVender() {
       $("#vender").modal('hide');
@@ -8585,8 +8615,49 @@ var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js"
       this.formapago = 'TARJETA';
     },
     vender: function vender() {
-      $("#vender").modal('hide');
-      this.updateEstado();
+      var e = this;
+      var url = '/ingreso/store';
+      var arrayIngreso = {
+        'descripcion': this.descripcion,
+        'cantidad': this.cantidad_ingreso,
+        'forma_pago': this.formapago,
+        'mov_banco': this.mov_banco,
+        'pago_unitario': this.total,
+        'total': this.total,
+        'id_detalle_reserva': this.id_detalle_reserva
+      };
+      axios.post(url, arrayIngreso).then(function (response) {
+        // deja vacio
+        e.descripcion = '';
+        e.cantidad_ingreso = 0;
+        e.forma_pago = 'EFECTIVO';
+        e.mov_banco = '';
+        e.total = 0.0;
+        e.id_detalle_reserva = 0;
+        $("#vender").modal('hide');
+        e.updateEstado();
+
+        if (this.reservas.length) {
+          e.AllReservas();
+        } else {
+          e.getReservas();
+        }
+      })["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    pdfReporte: function pdfReporte() {
+      var e = this;
+      var url = '/reservas/reporte/all';
+      var arrayFechas = {
+        'fecha_inicial': this.fecha_inicial,
+        'fecha_final': this.fecha_final
+      };
+      axios.get(url, arrayFechas).then(function (response) {})["catch"](function (error) {
+        // handle error
+        console.log(error);
+      });
     }
   },
   mounted: function mounted() {
@@ -59006,99 +59077,115 @@ var render = function () {
                 { staticClass: "form-group row", attrs: { id: "navegador" } },
                 [
                   _c("div", { staticClass: "col-md-10" }, [
-                    _c("div", { staticClass: "input-group" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.fecha_inicial,
-                            expression: "fecha_inicial",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "date" },
-                        domProps: { value: _vm.fecha_inicial },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.fecha_inicial = $event.target.value
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("span", [_vm._v("A")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.fecha_final,
-                            expression: "fecha_final",
-                          },
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "date" },
-                        domProps: { value: _vm.fecha_final },
-                        on: {
-                          input: function ($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.fecha_final = $event.target.value
-                          },
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-left": "10px" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.getReservas(1)
+                    _c(
+                      "form",
+                      { attrs: { method: "post", action: _vm.action } },
+                      [
+                        _c("input", {
+                          attrs: { type: "hidden", name: "_token" },
+                          domProps: { value: _vm.csrf },
+                        }),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fecha_inicial,
+                                expression: "fecha_inicial",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              required: "",
+                              name: "fecha_1",
                             },
-                          },
-                        },
-                        [_vm._v("Hoy")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-info",
-                          staticStyle: { "margin-left": "10px" },
-                          on: {
-                            click: function ($event) {
-                              return _vm.AllReservas(1)
+                            domProps: { value: _vm.fecha_inicial },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.fecha_inicial = $event.target.value
+                              },
                             },
-                          },
-                        },
-                        [_vm._v("Todos")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-danger",
-                          staticStyle: { "margin-left": "10px" },
-                        },
-                        [_vm._v("PDF")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          staticStyle: { "margin-left": "10px" },
-                        },
-                        [_vm._v("Excel")]
-                      ),
-                    ]),
+                          }),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("A")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.fecha_final,
+                                expression: "fecha_final",
+                              },
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "date",
+                              min: _vm.date(),
+                              required: "",
+                              name: "fecha_2",
+                            },
+                            domProps: { value: _vm.fecha_final },
+                            on: {
+                              input: function ($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.fecha_final = $event.target.value
+                              },
+                            },
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              staticStyle: { "margin-left": "10px" },
+                              attrs: { type: "button" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.getReservas(1)
+                                },
+                              },
+                            },
+                            [_vm._v("Hoy")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-info",
+                              staticStyle: { "margin-left": "10px" },
+                              attrs: { type: "button" },
+                              on: {
+                                click: function ($event) {
+                                  return _vm.AllReservas(1)
+                                },
+                              },
+                            },
+                            [_vm._v("Todos")]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(0),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-success",
+                              staticStyle: { "margin-left": "10px" },
+                              attrs: { hidden: "" },
+                            },
+                            [_vm._v("Excel")]
+                          ),
+                        ]),
+                      ]
+                    ),
                   ]),
                 ]
               ),
@@ -59107,7 +59194,7 @@ var render = function () {
                 "table",
                 { staticClass: "table align-items-center table-flush" },
                 [
-                  _vm._m(0),
+                  _vm._m(1),
                   _vm._v(" "),
                   _vm.filtrarRango.length
                     ? _c(
@@ -59146,8 +59233,8 @@ var render = function () {
                               ]),
                               _vm._v(" "),
                               reserva.estado == "PENDIENTE"
-                                ? [_vm._m(1, true)]
-                                : [_vm._m(2, true)],
+                                ? [_vm._m(2, true)]
+                                : [_vm._m(3, true)],
                               _vm._v(" "),
                               _c("td", [
                                 _c(
@@ -59161,7 +59248,11 @@ var render = function () {
                                       },
                                     },
                                   },
-                                  [_vm._v("Detales")]
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-info-circle",
+                                    }),
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 reserva.estado == "PENDIENTE"
@@ -59176,9 +59267,20 @@ var render = function () {
                                           },
                                         },
                                       },
-                                      [_vm._v("Editar")]
+                                      [_c("i", { staticClass: "fas fa-edit" })]
                                     )
                                   : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-sm btn-danger",
+                                    attrs: {
+                                      href: "reserva/reporte/" + reserva.slug,
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fas fa-file-pdf" })]
+                                ),
                               ]),
                             ],
                             2
@@ -59186,7 +59288,7 @@ var render = function () {
                         }),
                         0
                       )
-                    : _c("tbody", [_vm._m(3)]),
+                    : _c("tbody", [_vm._m(4)]),
                 ]
               ),
               _vm._v(" "),
@@ -59772,7 +59874,7 @@ var render = function () {
               "div",
               { staticClass: "card mb-3" },
               [
-                _vm._m(4),
+                _vm._m(5),
                 _vm._v(" "),
                 _c(
                   "center",
@@ -60295,12 +60397,12 @@ var render = function () {
                           _vm._v("Elige metodo de pago"),
                         ]),
                         _vm._v(" "),
-                        _c("option", { attrs: { value: "TARJETA" } }, [
-                          _vm._v("TARJETA"),
-                        ]),
-                        _vm._v(" "),
                         _c("option", { attrs: { value: "EFECTIVO" } }, [
                           _vm._v("EFECTIVO"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "TARJETA" } }, [
+                          _vm._v("TARJETA"),
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "TRANSFERENCIA" } }, [
@@ -60309,6 +60411,66 @@ var render = function () {
                       ]
                     ),
                   ]),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c("div", { staticClass: "col" }, [
+                    _c("label", { attrs: { for: "exampleInputPassword1" } }, [
+                      _vm._v("Descripcion"),
+                    ]),
+                    _vm._v(" "),
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.descripcion,
+                          expression: "descripcion",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { name: "", id: "", cols: "", rows: "5" },
+                      domProps: { value: _vm.descripcion },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.descripcion = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _vm.formapago != "EFECTIVO"
+                    ? _c("div", { staticClass: "col" }, [
+                        _c("label", { attrs: { for: "" } }, [
+                          _vm._v("Movimiento"),
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.mov_banco,
+                              expression: "mov_banco",
+                            },
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", placeholder: "N° Operacion" },
+                          domProps: { value: _vm.mov_banco },
+                          on: {
+                            input: function ($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.mov_banco = $event.target.value
+                            },
+                          },
+                        }),
+                      ])
+                    : _vm._e(),
                 ]),
               ]),
               _vm._v(" "),
@@ -60349,6 +60511,20 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-danger",
+        staticStyle: { "margin-left": "10px" },
+        attrs: { type: "submit" },
+      },
+      [_c("i", { staticClass: "fas fa-file-pdf" })]
+    )
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

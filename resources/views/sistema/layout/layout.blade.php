@@ -63,6 +63,7 @@
   <script src="{{asset('plantilla/js/ruang-admin.min.js')}}"></script>
 
 
+
   {{-- <script src="plantilla/vendor/chart.js/Chart.min.js"></script>
   <script src="{{asset('plantilla/js/demo/chart-area-demo.js')}}"></script> --}}
   @stack('js')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\Detalle_Reserva;
 use Carbon\Carbon;
+use Illuminate\Support\Str as Str;
 
 class ReservaController extends Controller
 {
@@ -26,14 +27,13 @@ class ReservaController extends Controller
            ->join('clientes','reservas.id_cliente', '=', 'clientes.id_cliente')
            ->join('guias','reservas.id_guia','=','guias.id_guia')
            ->join('detalle_reservas', 'reservas.id_reserva','=','detalle_reservas.id_reserva')
-           ->select('reservas.id_reserva','reservas.fecha_reserva','reservas.comentario','reservas.estado','reservas.id_cliente','reservas.id_horario','reservas.id_guia','horarios.start','horarios.end',
+           ->select('reservas.id_reserva','reservas.slug','reservas.fecha_reserva','reservas.comentario','reservas.estado','reservas.id_cliente','reservas.id_horario','reservas.id_guia','horarios.start','horarios.end',
            'clientes.nombres as nombre_cliente','clientes.apellidos as apellido_cliente','clientes.telefono as telefono_cliente',
            'guias.nombres as nombre_guia','guias.apellidos as apellido_guia','guias.telefono as telefono_guia',
            'detalle_reservas.sencillo','detalle_reservas.precio_sencillo','detalle_reservas.doble','detalle_reservas.precio_doble',
            'detalle_reservas.descuento','detalle_reservas.total','detalle_reservas.fecha_hora','detalle_reservas.id_detalle_reserva',
            'detalle_reservas.id_reserva as idreserva')
            ->where('reservas.fecha_reserva','=', $date)
-           ->where('reservas.estado','=','PENDIENTE')
            ->orderBy('reservas.fecha_reserva','DESC')->paginate(100);
 
        //retornar propiedades
@@ -57,7 +57,7 @@ class ReservaController extends Controller
             ->join('clientes','reservas.id_cliente', '=', 'clientes.id_cliente')
             ->join('guias','reservas.id_guia','=','guias.id_guia')
             ->join('detalle_reservas', 'reservas.id_reserva','=','detalle_reservas.id_reserva')
-            ->select('reservas.id_reserva','reservas.fecha_reserva','reservas.comentario','reservas.estado','reservas.id_cliente','reservas.id_horario','reservas.id_guia','horarios.start','horarios.end',
+            ->select('reservas.id_reserva','reservas.slug','reservas.fecha_reserva','reservas.comentario','reservas.estado','reservas.id_cliente','reservas.id_horario','reservas.id_guia','horarios.start','horarios.end',
             'clientes.nombres as nombre_cliente','clientes.apellidos as apellido_cliente','clientes.telefono as telefono_cliente',
             'guias.nombres as nombre_guia','guias.apellidos as apellido_guia','guias.telefono as telefono_guia',
             'detalle_reservas.sencillo','detalle_reservas.precio_sencillo','detalle_reservas.doble','detalle_reservas.precio_doble',
@@ -82,6 +82,8 @@ class ReservaController extends Controller
     }
     //crear reserva
     public function StoreReserva(Request $request){
+        //valor aletorio
+        $uniquid = uniqid();
         $reserva = new Reserva();
         $reserva->fecha_reserva = $request->get('fecha_reserva');
         $reserva->id_horario = $request->get('id_horario');
@@ -89,6 +91,7 @@ class ReservaController extends Controller
         $reserva->id_guia = $request->id_guia;
         $reserva->comentario = $request->get('comentario');
         $reserva->estado = 'PENDIENTE';
+        $reserva->slug = Str::slug($uniquid);
         $reserva->save();
 
         $detalleReserva = new Detalle_Reserva;

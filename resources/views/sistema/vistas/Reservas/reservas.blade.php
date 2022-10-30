@@ -15,7 +15,7 @@
     
         <!-- Componente -->
         <div class="row">
-            <reserva-component></reserva-component>
+            <reserva-component  action="{{route('reservas.pdf')}}" csrf="{{csrf_token()}}"></reserva-component>
         </div>
     </div>
 {{-- </div> --}}

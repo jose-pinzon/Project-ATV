@@ -30,6 +30,10 @@ class CreateReservasTable extends Migration
              $table->integer('id_guia')->unsigned();
              //relacion
              $table->foreign('id_guia')->references('id_guia')->on('guias');
+
+             //slug
+             $table->string('slug')->unique();
+
             $table->timestamps();
 
             //pendiente relacion con el usuario

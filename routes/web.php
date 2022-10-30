@@ -59,6 +59,10 @@ Route::get('/reservas/all', [App\Http\Controllers\ReservaController::class, 'All
 Route::post('/reservas/store', [App\Http\Controllers\ReservaController::class, 'StoreReserva'])->name('reservas/store');
 Route::put('/reservas/update', [App\Http\Controllers\ReservaController::class, 'updateReserva'])->name('reservas/update');
 Route::put('/reservas/updateEstado', [App\Http\Controllers\ReservaController::class, 'cambiarEstado'])->name('reservas/updateEstado');
+Route::get('/reserva/reporte/{slug}', [App\Http\Controllers\PdfReservController::class, 'generarPdfReserva']);
+Route::post('reservas/reporte/consulta', [App\Http\Controllers\PdfReservaAllController::class, 'PdfRango'])->name('reservas.pdf');
+
+Route::post('ingreso/store',[App\Http\Controllers\IngresoController::class, 'store'])->name('ingreso.store');
 
 Auth::routes();
 

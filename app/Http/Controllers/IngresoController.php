@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ingreso;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class IngresoController extends Controller
 {
@@ -35,7 +36,18 @@ class IngresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hora_fecha = Carbon::now('America/Mexico_City');
+
+        $ingreso = new Ingreso();
+        $ingreso->fecha_hora = $hora_fecha->toDateString();
+        $ingreso->descripcion = $request->descripcion;
+        $ingreso->cantidad = $request->cantidad;
+        $ingreso->forma_pago = $request->forma_pago;
+        $ingreso->mov_banco = $request->mov_blaco;
+        $ingreso->pago_unitario = $request->pago_unitario;
+        $ingreso->total = $request->total;
+        $ingreso->id_detalle_reserva = $request->id_detalle_reserva;
+        $ingreso->save();
     }
 
     /**

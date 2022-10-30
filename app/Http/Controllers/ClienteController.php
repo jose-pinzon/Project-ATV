@@ -65,6 +65,8 @@ class ClienteController extends Controller
         $cliente->pais = $request->get('pais');
         $cliente->ciudad = $request->get('ciudad');
         $cliente->save();
+
+        return $cliente;
     }
 
     /**
