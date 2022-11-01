@@ -450,7 +450,7 @@ export default {
           //variables ventas
           formapago:'EFECTIVO',
           descripcion:'',
-          m_banco:'',
+          mov_banco:'',
           cantidad_ingreso:0,
         
         }

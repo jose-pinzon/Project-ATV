@@ -50,6 +50,9 @@ Route::put('/horarios/desactivar', [App\Http\Controllers\HorarioController::clas
 Route::get('/horarios/select', [App\Http\Controllers\HorarioController::class, 'selectHorarios'])->name('horarios/horarios');
 
 //Modulo servicio
+Route::get('/servicios',[App\Http\Controllers\ServicioController::class, 'returnVista'])->name('servicios');
+Route::get('/servicios/index',[App\Http\Controllers\ServicioController::class, 'index'])->name('servicios/index');
+Route::put('/servicios/update',[App\Http\Controllers\ServicioController::class, 'update'])->name('servicios/update');
 Route::get('/capture/servicios', [App\Http\Controllers\ServicioController::class, 'servicios'])->name('capture/servicios');
 
 //MODULO RESERVAS

@@ -43,7 +43,7 @@ class IngresoController extends Controller
         $ingreso->descripcion = $request->descripcion;
         $ingreso->cantidad = $request->cantidad;
         $ingreso->forma_pago = $request->forma_pago;
-        $ingreso->mov_banco = $request->mov_blaco;
+        $ingreso->mov_banco = $request->mov_banco;
         $ingreso->pago_unitario = $request->pago_unitario;
         $ingreso->total = $request->total;
         $ingreso->id_detalle_reserva = $request->id_detalle_reserva;
