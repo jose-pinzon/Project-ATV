@@ -14,7 +14,7 @@
     </li>
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
-      Features
+      Control
     </div>
     <li class="nav-item">
       <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
@@ -44,23 +44,61 @@
         </div>
       </div>
     </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable2" aria-expanded="true"
+        aria-controls="collapseTable">
+        <i class="fas fa-fw fa-columns"></i>
+        <span>Reservas</span>
+      </a>
+      <div id="collapseTable2" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Modulos</h6>
+          <a class="collapse-item" href="{{route('reservas')}}"> Reservaciones </a>
+          <a class="collapse-item" href="{{route('horarios')}}">Horarios</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable3" aria-expanded="true"
+        aria-controls="collapseTable">
+        <i class="fas fa-fw fa-columns"></i>
+        <span>Ingresos</span>
+      </a>
+      <div id="collapseTable3" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Modulos</h6>
+          <a class="collapse-item" href="{{route('ingresos')}}"> Ingresos </a>
+         
+        </div>
+      </div>
+    </li>
+  
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+      Administración
+    </div>
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('clientes')}}">
         <i class="fas fa-fw fa-palette"></i>
         <span>Clientes</span>
       </a>
     </li>
-    <hr class="sidebar-divider">
-    <div class="sidebar-heading">
-      Examples
-    </div>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
-        aria-controls="collapsePage">
-        <i class="fas fa-fw fa-columns"></i>
-        <span>Pages</span>
+    <li class="nav-item" >
+      <a class="nav-link"  href="{{route('guias')}}">
+        <i class="fas fa-fw fa-palette"></i>
+        <span>Guias</span>
       </a>
     </li>
+ 
+    <li class="nav-item" >
+      <a class="nav-link"  href="{{route('servicios')}}">
+        <i class="fas fa-fw fa-palette"></i>
+        <span>Servicios</span>
+      </a>
+    </li>
+   
 
     <hr class="sidebar-divider">
     <div class="version" id="version-ruangadmin"></div>

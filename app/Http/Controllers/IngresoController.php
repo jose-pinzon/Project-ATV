@@ -8,6 +8,9 @@ use Carbon\Carbon;
 
 class IngresoController extends Controller
 {
+    public function returnVista(){
+        return view('sistema.vistas.Ingresos.ingresos');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +18,56 @@ class IngresoController extends Controller
      */
     public function index()
     {
-        //
+         //seguridad
+       //if(!$request->ajax()) return redirect('/');
+       //integracion de carbon
+       $date = Carbon::now();
+       //fecha actual
+       $date = $date->format('Y-m-d');
+
+        $ingresos = Ingreso::join('detalle_reservas','ingresos.id_detalle_reserva', '=', 'detalle_reservas.id_detalle_reserva')
+        ->join('reservas','detalle_reservas.id_reserva','=','reservas.id_reserva')
+        ->select('ingresos.fecha_hora','ingresos.descripcion','ingresos.cantidad','ingresos.forma_pago','ingresos.mov_banco',
+        'ingresos.pago_unitario','ingresos.total','reservas.slug')
+        ->where('ingresos.fecha_hora','=', $date)
+        ->orderBy('ingresos.fecha_hora','DESC')->paginate(100);
+
+       //retornar propiedades
+       return [
+           'pagination' => [
+               //propiedades de aginations
+               'total'        => $ingresos->total(),
+               'current_page' => $ingresos->currentPage(),
+               'per_page'     => $ingresos->perPage(),
+               'last_page'    => $ingresos->lastPage(),
+               'from'         => $ingresos->firstItem(),
+               'to'           => $ingresos->lastItem(),
+           ],
+           'ingresos'=> $ingresos
+       ];
+   
+    }
+
+    public function allIngresos(){
+        $ingresos = Ingreso::join('detalle_reservas','ingresos.id_detalle_reserva', '=', 'detalle_reservas.id_detalle_reserva')
+        ->join('reservas','detalle_reservas.id_reserva','=','reservas.id_reserva')
+        ->select('ingresos.fecha_hora','ingresos.descripcion','ingresos.cantidad','ingresos.forma_pago','ingresos.mov_banco',
+        'ingresos.pago_unitario','ingresos.total','reservas.slug')
+        ->orderBy('ingresos.fecha_hora','DESC')->paginate(10);
+
+       //retornar propiedades
+       return [
+           'pagination' => [
+               //propiedades de aginations
+               'total'        => $ingresos->total(),
+               'current_page' => $ingresos->currentPage(),
+               'per_page'     => $ingresos->perPage(),
+               'last_page'    => $ingresos->lastPage(),
+               'from'         => $ingresos->firstItem(),
+               'to'           => $ingresos->lastItem(),
+           ],
+           'ingresos'=> $ingresos
+       ];
     }
 
     /**
