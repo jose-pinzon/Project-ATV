@@ -25,7 +25,8 @@
       <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Forms</h6>
-          <a class="collapse-item" href="{{route('egreso.index')}}">Ver datos</a>
+          <a class="collapse-item" href="{{route('egreso.index')}}">Ver Egresos</a>
+          <a class="collapse-item" href="{{route('egresoX.Moto')}}">Ver datos por moto </a>
           <a class="collapse-item" href="{{route('egreso.vista')}}">Crear nuevo</a>
         </div>
       </div>

@@ -10,7 +10,7 @@
                             <moment :fecha="egreso.created_at"></moment>
                         </td>
                         <td>
-                            <a href="" class="btn btn-primary"> boton </a>
+                            <a @click="eliminar" class="btn btn-danger"> Eliminar </a>
                         </td>
                     </tr>
         </tbody>
@@ -26,6 +26,43 @@ export default {
             type:Array,
             require:true
         }
+    },
+    methods:{
+        eliminar(){
+            const swalWithBootstrapButtons = this.$swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                        })
+
+                        swalWithBootstrapButtons.fire({
+                        title: '¿Esta seguro de eliminar este registro?',
+                        text: "Una vez eliminado ya no se podra recuperarr",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Aceptar !',
+                        cancelButtonText: 'Cancelar !',
+                        reverseButtons: true
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            // AtvApi.post(`/motoAtv/${ id }`, params).then(res =>{
+                            //     this.getAtv()
+                                swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                'Eliminado de pruebas',
+                                // `${res.data.message}`,
+                                'success'
+                                )
+                            // }).
+                            // catch(e => {
+                            //     console.log(e);
+                            // })
+                            }
+                        })
+        }
+
     }
 
 }

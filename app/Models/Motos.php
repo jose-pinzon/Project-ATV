@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Motos extends Model
 {
     use HasFactory;
+    // public $with = ['egresos'];
 
     protected $fillable = [
         'numero_Atv',
@@ -22,5 +23,8 @@ class Motos extends Model
         'activa'
     ];
 
+    public function egresos(){
+        return $this->hasMany(Egreso::class, 'moto_id' );
+    }
 
 }

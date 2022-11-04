@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\EgresoResource;
 use App\Models\Egreso;
 use App\Models\Motos;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 class EgresoController extends Controller
 {
     public function datosCompletosEgresos(){
-        $egresos = Egreso::all();
+        $egresos = EgresoResource::collection(Egreso::with('moto')->get());
         return Response()->json($egresos, 200);
     }
 
@@ -23,9 +24,16 @@ class EgresoController extends Controller
      */
     public function index(Request $request)
     {
-        $egresos = Egreso::orderBy('id','DESC')->paginate(4);
+        $pagina = intval($request['num_filas']);
+
+        if ($pagina == null) {
+            $pagina = 4 ;
+        }
+
+        $egresos = EgresoResource::collection(Egreso::with(['moto'])->orderBy('id', 'DESC')->paginate($pagina));
 
         return[
+            'pagina' => $pagina,
             'pagination' => [
                 'total' => $egresos->total(),
                 'current_page' => $egresos->currentPage(),/* Pagina actual */

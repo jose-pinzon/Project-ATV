@@ -13,8 +13,9 @@
                   </button>
                 </div>
                 <div class="modal-body">
-               
+
                   <slot name="contenido"></slot>
+                  {{datos}}
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -26,19 +27,7 @@
 
 <script>
 export default {
-    props:{
-        detalles:{
-            type: Object,
-            require: true
-        }
-    },
-    data() {
-        return{
-            datosDetalle:''
-        }
-    },
-
-
+    props:['datos']
 
 }
 </script>

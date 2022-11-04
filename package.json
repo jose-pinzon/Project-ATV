@@ -28,6 +28,7 @@
         "@inertiajs/inertia-vue": "^0.8.0",
         "moment": "^2.29.4",
         "vue-axios": "^3.4.1",
-        "vue-router": "^3.6.5"
+        "vue-router": "^3.6.5",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

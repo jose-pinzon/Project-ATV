@@ -32,12 +32,6 @@
                     <label for="">Tipo de gasto : </label>
                     <input type="text"  class="form-control" v-model="ValoresEgreso.tipo_gasto">
                 </div>
-
-
-                <div class="col-md">
-                    <label for="">Descripcion del gasto :</label>
-                    <input type="text" class="form-control" v-model="ValoresEgreso.gasto" >
-                </div>
             </section>
 
             <section class="row justify-content-center">
@@ -45,6 +39,12 @@
                     <label >
                         Colocar cantidad usada :</label>
                         <input type="number" class="form-control" v-model="ValoresEgreso.cantidad">
+                </div>
+
+                <div class="col-md">
+                    <label for="">Descripcion del gasto :</label>
+                    <textarea class="form-control" v-model="ValoresEgreso.gasto" height="30"  ></textarea>
+                    <!-- <input type="text" class="form-control" v-model="ValoresEgreso.gasto" > -->
                 </div>
                 <!-- <div class="col-md-4">
                     <label >
@@ -83,18 +83,23 @@ export default {
     methods:{
         async getAtv(){
                 const { data } = await AtvApi.get('/motos')
-                    this.Atvs = data
+                    this.Atvs = data.MotosAll
         },
 
         async agregar(){
             try {
                 const { data } = await AtvApi.post('/egresoAtv',this.ValoresEgreso)
-                this.mensaje = data.message
                 this.ValoresEgreso.tipo_gasto = ''
                 this.ValoresEgreso.gasto = ''
                 this.ValoresEgreso.cantidad = 0
                 this.ValoresEgreso.moto_id = ''
                 this.errors = {}
+
+                this.$swal.fire(
+                    'Finalizado',
+                    data.message,
+                    'success'
+                )
 
             } catch (error) {
                 if( error.response.status === 422){

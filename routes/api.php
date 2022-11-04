@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\EgresoController;
-use App\Http\Controllers\Egresos;
-use App\Http\Controllers\EgresosController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MotosController;
