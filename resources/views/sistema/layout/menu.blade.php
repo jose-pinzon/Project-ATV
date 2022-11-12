@@ -41,12 +41,12 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Tables</h6>
           <a class="collapse-item" href="{{route('moto.index')}}"> Motos </a>
-          <a class="collapse-item" href="datatables.html">DataTables</a>
+          <a class="collapse-item" href="#">DataTables</a>
         </div>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="ui-colors.html">
+      <a class="nav-link" href="#">
         <i class="fas fa-fw fa-palette"></i>
         <span>UI Colors</span>
       </a>

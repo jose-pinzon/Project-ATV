@@ -5420,6 +5420,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5460,7 +5494,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _yield$AtvApi$get = _context.sent;
                 data = _yield$AtvApi$get.data;
-                _this.DatosMotosEgresos = data.MotosAll;
+                _this.DatosMotosEgresos = data;
 
               case 5:
               case "end":
@@ -5505,8 +5539,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var _api_AtvApi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../api/AtvApi */ "./resources/js/api/AtvApi.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return generator._invoke = function (innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; }(innerFn, self, context), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; this._invoke = function (method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); }; } function maybeInvokeDelegate(delegate, context) { var method = delegate.iterator[context.method]; if (undefined === method) { if (context.delegate = null, "throw" === context.method) { if (delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method)) return ContinueSentinel; context.method = "throw", context.arg = new TypeError("The iterator does not provide a 'throw' method"); } return ContinueSentinel; } var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) { if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; } return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, define(Gp, "constructor", GeneratorFunctionPrototype), define(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (object) { var keys = []; for (var key in object) { keys.push(key); } return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) { "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); } }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
@@ -5633,13 +5669,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    filas: (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(function () {
+    filas: (0,vue__WEBPACK_IMPORTED_MODULE_2__.defineAsyncComponent)(function () {
       return __webpack_require__.e(/*! import() */ "resources_js_modules_Egresos_components_filasEgreso_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/filasEgreso.vue */ "./resources/js/modules/Egresos/components/filasEgreso.vue"));
-    })
+    }),
+    pdf: vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -5664,7 +5735,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       offset: 3,
       filasMostrar: null,
       search: '',
-      paginationActive: 0
+      paginationActive: 0,
+      startDate: '',
+      finfecha: '',
+      enrutador: 0
     };
   },
   mounted: function mounted() {
@@ -5672,8 +5746,42 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.obtenerDatosEgreTotal();
   },
   methods: {
-    obtenerDatos: function obtenerDatos(page, num_filas) {
+    eliminar: function eliminar(id) {
       var _this = this;
+
+      var params = {
+        id: id,
+        _method: 'delete'
+      };
+      var swalWithBootstrapButtons = this.$swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      });
+      swalWithBootstrapButtons.fire({
+        title: "\xBFEsta seguro de eliminar este registro? ",
+        text: "Una vez eliminado ya no se podra recuperar",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar !',
+        cancelButtonText: 'Cancelar !',
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          _api_AtvApi__WEBPACK_IMPORTED_MODULE_0__["default"].post("/egresoAtv/".concat(id), params).then(function (res) {
+            _this.obtenerDatos();
+
+            swalWithBootstrapButtons.fire('Deleted!', res.data.message, 'success');
+          })["catch"](function (e) {
+            console.log(e);
+          });
+        }
+      });
+    },
+    obtenerDatos: function obtenerDatos(page, num_filas) {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var _yield$AtvApi$get, data, total;
@@ -5683,21 +5791,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _api_AtvApi__WEBPACK_IMPORTED_MODULE_0__["default"].get("/egresoAtv?page=".concat(page, "&num_filas=").concat(num_filas));
+                return _api_AtvApi__WEBPACK_IMPORTED_MODULE_0__["default"].get("/egresoAtv?page=".concat(page, "&num_filas=").concat(num_filas, "\n            &inicio_fecha=").concat(_this2.startDate, "&fin_fecha=").concat(_this2.finfecha, "&enrutador=").concat(_this2.enrutador));
 
               case 2:
                 _yield$AtvApi$get = _context.sent;
                 data = _yield$AtvApi$get.data;
-                _this.Egresos = data.egresos, _this.pagination = data.pagination;
+                _this2.Egresos = data.egresos, _this2.pagination = data.pagination;
+                _this2.filasMostrar = data.pagina;
                 total = 0;
 
-                _this.Egresos.forEach(function (e) {
+                _this2.Egresos.forEach(function (e) {
                   total += parseFloat(e.cantidad);
                 });
 
-                _this.totalpage = total;
+                _this2.totalpage = total;
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -5705,8 +5814,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    generarPdf: function generarPdf() {
+      return "/api/generar-pdf?fecha1=".concat(this.startDate, "&fecha2=").concat(this.finfecha);
+    },
     obtenerDatosEgreTotal: function obtenerDatosEgreTotal() {
-      var _this2 = this;
+      var _this3 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var _yield$AtvApi$get2, data, total;
@@ -5721,12 +5833,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _yield$AtvApi$get2 = _context2.sent;
                 data = _yield$AtvApi$get2.data;
-                _this2.EgresosTotales = data;
+                _this3.EgresosTotales = data;
                 total = 0;
                 data.forEach(function (e) {
                   total += parseFloat(e.cantidad);
                 });
-                _this2.total = total;
+                _this3.total = total;
 
               case 8:
               case "end":
@@ -5742,6 +5854,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   watch: {
+    finfecha: function finfecha(value, oldvalue) {
+      if (value == '' || this.startDate == null) {
+        this.enrutador = 0;
+        this.obtenerDatos(this.pagination.current_page, this.filasMostrar);
+      } else {
+        this.enrutador = 1;
+        this.obtenerDatos(this.pagination.current_page, this.filasMostrar);
+      }
+    },
+    // startDate(newValue, oldValue){
+    //     if(newValue = '')  this.obtenerDatos(this.pagination.current_page, this.filasMostrar)
+    // },
     filasMostrar: function filasMostrar(value, oldvalue) {
       switch (value) {
         case '2':
@@ -5770,14 +5894,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   computed: {
+    //!Metodo de busqueda
     datosMostrar: function datosMostrar() {
-      var _this3 = this;
+      var _this4 = this;
 
       if (!this.search) {
         return this.Egresos;
       } else {
         var datosfiltrados = this.EgresosTotales.filter(function (e) {
-          return e.tipo_gasto.includes(_this3.search);
+          return e.tipo_gasto.toLowerCase().includes(_this4.search.toLowerCase());
         });
         return datosfiltrados;
       }
@@ -6502,67 +6627,6 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -6572,7 +6636,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         tipo_gasto: '',
         gasto: '',
         cantidad: 0,
-        moto_id: ''
+        moto_id: '',
+        fecha: ''
       },
       errors: {},
       mensaje: ''
@@ -6629,27 +6694,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this2.ValoresEgreso.gasto = '';
                 _this2.ValoresEgreso.cantidad = 0;
                 _this2.ValoresEgreso.moto_id = '';
+                _this2.ValoresEgreso.fecha = '';
                 _this2.errors = {};
 
                 _this2.$swal.fire('Finalizado', data.message, 'success');
 
-                _context2.next = 16;
+                _context2.next = 17;
                 break;
 
-              case 13:
-                _context2.prev = 13;
+              case 14:
+                _context2.prev = 14;
                 _context2.t0 = _context2["catch"](0);
 
                 if (_context2.t0.response.status === 422) {
                   _this2.errors = _context2.t0.response.data.errors;
                 }
 
-              case 16:
+              case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 13]]);
+        }, _callee2, null, [[0, 14]]);
       }))();
     }
   }
@@ -12068,7 +12134,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contentenido-cuentas[data-v-15adda87]{\n    display: block;\n    margin: 2px;\n    text-align: left;\n    width: 80px;\n    float: left;\n}\n.displaybox[data-v-15adda87]{\n    float: none;\n    clear: both;\n}\n.contenedor[data-v-15adda87]{\n    width: 100%;\n}\n.contenido_Egresos_ingresos[data-v-15adda87]{\n    margin-top: 40px;\n    width: 100%;\n}\n.cardPersonal[data-v-15adda87]{\n    display: block;\n    border: 1px solid#ccc;\n    max-width: 30%;\n    min-width: 10%;\n    height: 40%;\n    padding: 20px;\n    margin: 40px;\n    float: left;\n}\n.limpiezaFlotado[data-v-15adda87]{\n    clear: both;\n    float: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contenidoColor[data-v-15adda87]{\n\n    padding: 10px;\n    margin: 20px;\n}\n.contenidoColor h1[data-v-15adda87]{\n    width: 100%;\n    text-align: center;\n    padding: 5px;\n    color: white;\n}\n.contentenido-cuentas[data-v-15adda87]{\n    display: block;\n    margin: 2px;\n    text-align: left;\n    width: 80px;\n    float: left;\n}\n.displaybox[data-v-15adda87]{\n    float: none;\n    clear: both;\n}\n.contenedor[data-v-15adda87]{\n    width: 100%;\n}\n.contenido_Egresos_ingresos[data-v-15adda87]{\n    margin-top: 40px;\n    width: 100%;\n}\n.cardPersonal[data-v-15adda87]{\n    display: block;\n    border: 1px solid#ccc;\n    max-width: 30%;\n    min-width: 10%;\n    height: 40%;\n    padding: 20px;\n    margin: 40px;\n    float: left;\n}\n.limpiezaFlotado[data-v-15adda87]{\n    clear: both;\n    float: none;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -12092,7 +12158,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido-gasto[data-v-79df2e37]{\n        width: 80%;\n        text-align: left;\n        margin-left:50% ;\n}\n.c-gasto[data-v-79df2e37]{\n        display: block;\n        float: left;\n        margin:10px;\n}\n.h-gasto[data-v-79df2e37]{\n        margin-right: 10%;\n        margin-top:2%;\n        font-size: 20px;\n}\n/*\n    nav ul{\n        width: 15%;\n        border: 1px solid #ccc;\n    }\n    nav ul li{\n        border: 1px solid #ccc;\n        padding: 4px;\n        text-decoration: none;\n    } */\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.contenido-gasto[data-v-79df2e37]{\n    width: 80%;\n    text-align: left;\n    margin-left:50% ;\n}\n.c-gasto[data-v-79df2e37]{\n    display: block;\n    float: left;\n    margin:10px;\n}\n.h-gasto[data-v-79df2e37]{\n    margin-right: 10%;\n    margin-top:2%;\n    font-size: 20px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -52349,22 +52415,80 @@ var render = function () {
     "section",
     { staticClass: "contenedor" },
     [
-      _c(
-        "div",
-        { staticClass: "row" },
-        _vm._l(_vm.DatosMotosEgresos, function (moto) {
-          return _c("card", {
-            key: moto.id,
-            attrs: { moto: moto },
-            on: {
-              MostrarIngEgre: function ($event) {
-                return _vm.cargarDatosMoto($event)
-              },
-            },
-          })
-        }),
-        1
-      ),
+      _vm.DatosMotosEgresos
+        ? _c("section", [
+            _c(
+              "div",
+              { staticClass: "row contenidoColor" },
+              [
+                _c("h1", { staticClass: "bg-gradient-warning" }, [
+                  _vm._v(" Motos amarillas"),
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.DatosMotosEgresos.MotosAmarillas, function (moto) {
+                  return _c("card", {
+                    key: moto.id,
+                    attrs: { moto: moto },
+                    on: {
+                      MostrarIngEgre: function ($event) {
+                        return _vm.cargarDatosMoto($event)
+                      },
+                    },
+                  })
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row contenidoColor" },
+              [
+                _c("h1", { staticClass: "bg-gradient-danger" }, [
+                  _vm._v(" Motos Rojas"),
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.DatosMotosEgresos.MotosRojas, function (moto) {
+                  return _c("card", {
+                    key: moto.id,
+                    attrs: { moto: moto },
+                    on: {
+                      MostrarIngEgre: function ($event) {
+                        return _vm.cargarDatosMoto($event)
+                      },
+                    },
+                  })
+                }),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "row contenidoColor" },
+              [
+                _c("h1", { staticClass: "bg-gradient-success" }, [
+                  _vm._v(" Motos Verde"),
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.DatosMotosEgresos.MotosVerdes, function (moto) {
+                  return _c("card", {
+                    key: moto.id,
+                    attrs: { moto: moto },
+                    on: {
+                      MostrarIngEgre: function ($event) {
+                        return _vm.cargarDatosMoto($event)
+                      },
+                    },
+                  })
+                }),
+              ],
+              2
+            ),
+          ])
+        : _c("div", { staticClass: "row justify-content-md-center loading" }, [
+            _vm._m(0),
+          ]),
       _vm._v(" "),
       _vm.modalstatus
         ? _c("Modal", {
@@ -52511,7 +52635,19 @@ var render = function () {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3 alert-white text-center mt-5" }, [
+      _vm._v("\n            Espere por favor...\n            "),
+      _c("h3", { staticClass: "mt-8" }, [
+        _c("i", { staticClass: "fa fa-spin fa-sync" }),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
@@ -52535,8 +52671,8 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-lg-12" }, [
+    _c("div", [
+      _c("div", { staticClass: "col-xl-12" }, [
         _c("div", { staticClass: "mb-4" }, [
           _c(
             "div",
@@ -52547,7 +52683,7 @@ var render = function () {
             [
               _c("h6", { staticClass: "m-0 font-weight-bold text-primary" }),
               _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 col-md" }, [
+              _c("div", { staticClass: "col-md-2 col-md" }, [
                 _c(
                   "div",
                   {
@@ -52556,7 +52692,7 @@ var render = function () {
                   },
                   [
                     _c("label", { attrs: { for: "" } }, [
-                      _vm._v(" Snow\n                        "),
+                      _vm._v(" Snow\n                            "),
                       _c(
                         "select",
                         {
@@ -52614,7 +52750,121 @@ var render = function () {
                 ),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "input-group col-md-4" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-3 form-group",
+                  attrs: { id: "simple-date2" },
+                },
+                [
+                  _c("label", { attrs: { for: "oneYearView" } }, [
+                    _vm._v("Inicio"),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group date" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.startDate,
+                          expression: "startDate",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.startDate },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.startDate = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-md-3 form-group",
+                  attrs: { id: "simple-date3" },
+                },
+                [
+                  _c("label", { attrs: { for: "oneYearView" } }, [
+                    _vm._v("Fin"),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "input-group date" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.startDate == "",
+                          expression: "startDate == ''",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "date", disabled: "" },
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.startDate != "",
+                          expression: "startDate != ''",
+                        },
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.finfecha,
+                          expression: "finfecha",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "date" },
+                      domProps: { value: _vm.finfecha },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.finfecha = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2 form-group" }, [
+                _c("label", { attrs: { for: "oneYearView" } }, [
+                  _vm._v("Generar PDF"),
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "input-group date" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "form-control btn btn-danger",
+                      attrs: { href: _vm.generarPdf() },
+                    },
+                    [_vm._v("PDF")]
+                  ),
+                ]),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group col-md-2" }, [
                 _c("input", {
                   directives: [
                     {
@@ -52643,148 +52893,153 @@ var render = function () {
                   },
                 }),
                 _vm._v(" "),
-                _vm._m(0),
+                _vm._m(2),
               ]),
             ]
           ),
-          _vm._v(" "),
-          _c("div", { staticClass: "table-responsive p-3" }, [
-            _vm.Egresos
-              ? _c(
-                  "table",
-                  {
-                    staticClass: "table align-items-center table-flush",
-                    attrs: { id: "dataTable" },
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("filas", { attrs: { datosEgresos: _vm.datosMostrar } }),
-                    _vm._v(" "),
-                    _vm._m(2),
-                  ],
-                  1
-                )
-              : _c(
-                  "div",
-                  { staticClass: "row justify-content-md-center loading" },
-                  [_vm._m(3)]
-                ),
-            _vm._v(" "),
-            _c("nav", { attrs: { "aria-label": "..." } }, [
-              _c(
-                "ul",
-                { staticClass: "pagination" },
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "table-responsive p-3" }, [
+          _vm.Egresos
+            ? _c(
+                "table",
+                {
+                  staticClass: "table align-items-center table-flush",
+                  attrs: { id: "dataTable" },
+                },
                 [
-                  _vm.pagination.current_page > 1
-                    ? _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "page-link",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.cambiarpagina(
-                                  _vm.pagination.current_page - 1
-                                )
-                              },
-                            },
-                          },
-                          [_c("span", [_vm._v("Atras")])]
-                        ),
-                      ])
-                    : _vm._e(),
+                  _vm._m(3),
                   _vm._v(" "),
-                  _vm._l(_vm.pagesNumber, function (page) {
-                    return _c(
-                      "li",
-                      {
-                        key: page,
-                        staticClass: "page-item",
-                        class: [page == _vm.isActived ? "active" : ""],
+                  _c("filas", {
+                    attrs: { datosEgresos: _vm.datosMostrar },
+                    on: {
+                      eliminar: function ($event) {
+                        return _vm.eliminar($event)
                       },
-                      [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "page-link",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.cambiarpagina(page)
-                              },
-                            },
-                          },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(page) +
-                                "\n                        "
-                            ),
-                          ]
-                        ),
-                      ]
-                    )
+                    },
                   }),
                   _vm._v(" "),
-                  _vm.pagination.current_page < _vm.pagination.last_page
-                    ? _c("li", { staticClass: "page-item" }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "page-link",
-                            attrs: { href: "#" },
-                            on: {
-                              click: function ($event) {
-                                $event.preventDefault()
-                                return _vm.cambiarpagina(
-                                  _vm.pagination.current_page + 1
-                                )
-                              },
+                  _vm._m(4),
+                ],
+                1
+              )
+            : _c(
+                "div",
+                { staticClass: "row justify-content-md-center loading" },
+                [_vm._m(5)]
+              ),
+          _vm._v(" "),
+          _c("nav", { attrs: { "aria-label": "..." } }, [
+            _c(
+              "ul",
+              { staticClass: "pagination" },
+              [
+                _vm.pagination.current_page > 1
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.cambiarpagina(
+                                _vm.pagination.current_page - 1
+                              )
                             },
                           },
-                          [
-                            _c("span", [
-                              _vm._v(
-                                "\n                            Siguiente\n                        "
-                              ),
-                            ]),
-                          ]
-                        ),
-                      ])
-                    : _vm._e(),
-                ],
-                2
-              ),
+                        },
+                        [_c("span", [_vm._v("Atras")])]
+                      ),
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._l(_vm.pagesNumber, function (page) {
+                  return _c(
+                    "li",
+                    {
+                      key: page,
+                      staticClass: "page-item",
+                      class: [page == _vm.isActived ? "active" : ""],
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.cambiarpagina(page)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(page) +
+                              "\n                        "
+                          ),
+                        ]
+                      ),
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _vm.pagination.current_page < _vm.pagination.last_page
+                  ? _c("li", { staticClass: "page-item" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "page-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.cambiarpagina(
+                                _vm.pagination.current_page + 1
+                              )
+                            },
+                          },
+                        },
+                        [
+                          _c("span", [
+                            _vm._v(
+                              "\n                            Siguiente\n                        "
+                            ),
+                          ]),
+                        ]
+                      ),
+                    ])
+                  : _vm._e(),
+              ],
+              2
+            ),
+          ]),
+          _vm._v(" "),
+          _c("section", { staticClass: "contenido-gasto" }, [
+            _c("div", { staticClass: "c-gasto" }, [
+              _c("h2", { staticClass: "h-gasto" }, [_vm._v(" gasto total: ")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.total },
+              }),
             ]),
             _vm._v(" "),
-            _c("section", { staticClass: "contenido-gasto" }, [
-              _c("div", { staticClass: "c-gasto" }, [
-                _c("h2", { staticClass: "h-gasto" }, [
-                  _vm._v(" gasto total: "),
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.total },
-                }),
+            _c("div", { staticClass: "c-gasto" }, [
+              _c("h2", { staticClass: "h-gasto" }, [
+                _vm._v(" gasto por pagina: "),
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "c-gasto" }, [
-                _c("h2", { staticClass: "h-gasto" }, [
-                  _vm._v(" gasto por pagina: "),
-                ]),
-                _vm._v(" "),
-                _c("input", {
-                  staticClass: "form-control",
-                  attrs: { type: "text", disabled: "" },
-                  domProps: { value: _vm.totalpage },
-                }),
-              ]),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", disabled: "" },
+                domProps: { value: _vm.totalpage },
+              }),
             ]),
           ]),
         ]),
@@ -52793,6 +53048,26 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-calendar" }),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c("span", { staticClass: "input-group-text" }, [
+        _c("i", { staticClass: "fas fa-calendar" }),
+      ]),
+    ])
+  },
   function () {
     var _vm = this
     var _h = _vm.$createElement
@@ -54909,6 +55184,32 @@ var render = function () {
                     return
                   }
                   _vm.$set(_vm.ValoresEgreso, "cantidad", $event.target.value)
+                },
+              },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("label", [_vm._v("\n                    Fecha :")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.ValoresEgreso.fecha,
+                  expression: "ValoresEgreso.fecha",
+                },
+              ],
+              staticClass: "form-control",
+              attrs: { type: "date" },
+              domProps: { value: _vm.ValoresEgreso.fecha },
+              on: {
+                input: function ($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.ValoresEgreso, "fecha", $event.target.value)
                 },
               },
             }),

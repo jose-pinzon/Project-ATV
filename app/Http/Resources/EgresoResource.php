@@ -20,8 +20,6 @@ class EgresoResource extends JsonResource
             "gasto"=> $this->gasto ,
             "cantidad"=> $this->cantidad,
             "moto" => new MotosResource($this->moto)
-
-
         ];
     }
 }

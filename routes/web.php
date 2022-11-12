@@ -30,7 +30,6 @@ Route::get('/', function () {
 //     return view('layouts.app');
 // })->where('any', '.*');
 
-
 Auth::routes();
 
 Route::group(['middleware' => ['auth', 'verified']], function(){

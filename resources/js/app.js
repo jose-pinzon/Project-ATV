@@ -60,6 +60,5 @@ Vue.component('egresos-xmotos', require('./modules/Egresos/views/EgresosXMoto').
  */
 const app = new Vue({
     el: '#app',
-
 });
 

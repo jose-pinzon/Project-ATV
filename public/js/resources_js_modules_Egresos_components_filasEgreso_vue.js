@@ -42,36 +42,7 @@ __webpack_require__.r(__webpack_exports__);
       require: true
     }
   },
-  methods: {
-    eliminar: function eliminar() {
-      var swalWithBootstrapButtons = this.$swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger'
-        },
-        buttonsStyling: false
-      });
-      swalWithBootstrapButtons.fire({
-        title: '¿Esta seguro de eliminar este registro?',
-        text: "Una vez eliminado ya no se podra recuperarr",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Aceptar !',
-        cancelButtonText: 'Cancelar !',
-        reverseButtons: true
-      }).then(function (result) {
-        if (result.isConfirmed) {
-          // AtvApi.post(`/motoAtv/${ id }`, params).then(res =>{
-          //     this.getAtv()
-          swalWithBootstrapButtons.fire('Deleted!', 'Eliminado de pruebas', // `${res.data.message}`,
-          'success'); // }).
-          // catch(e => {
-          //     console.log(e);
-          // })
-        }
-      });
-    }
-  }
+  methods: {}
 });
 
 /***/ }),
@@ -176,12 +147,19 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("td", [_c("moment", { attrs: { fecha: egreso.created_at } })], 1),
+        _c("td", [_c("moment", { attrs: { fecha: egreso.fecha } })], 1),
         _vm._v(" "),
         _c("td", [
           _c(
             "a",
-            { staticClass: "btn btn-danger", on: { click: _vm.eliminar } },
+            {
+              staticClass: "btn btn-danger text-white font-bold",
+              on: {
+                click: function ($event) {
+                  return _vm.$emit("eliminar", egreso.id)
+                },
+              },
+            },
             [_vm._v(" Eliminar ")]
           ),
         ]),

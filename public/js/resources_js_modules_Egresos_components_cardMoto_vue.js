@@ -27,6 +27,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['moto'],
@@ -192,6 +193,10 @@ var render = function () {
   return _c("div", { staticClass: "col-sm-4 cardMo" }, [
     _c("div", { staticClass: "card" }, [
       _c("div", { staticClass: "card-body" }, [
+        _c("h3", { staticClass: "card-title" }, [
+          _vm._v("Numero Moto: " + _vm._s(_vm.moto.numero_Atv)),
+        ]),
+        _vm._v(" "),
         _c("h5", { staticClass: "card-title" }, [
           _vm._v(_vm._s(_vm.moto.placa)),
         ]),

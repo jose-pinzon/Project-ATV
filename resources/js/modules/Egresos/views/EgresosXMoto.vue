@@ -1,9 +1,43 @@
 
 <template>
     <section class="contenedor">
-        <div class="row">
-                    <card @MostrarIngEgre="cargarDatosMoto($event)"  v-for="moto in DatosMotosEgresos"  :key="moto.id" :moto="moto">
+        <!-- <div class="row">
+                    <card @MostrarIngEgre="cargarDatosMoto($event)"  v-for="moto in DatosMotosEgresos.MotosAll"  :key="moto.id" :moto="moto">
                     </card>
+        </div> -->
+        <section v-if="DatosMotosEgresos">
+            <div class="row contenidoColor">
+                <h1 class="bg-gradient-warning"> Motos amarillas</h1>
+                        <card @MostrarIngEgre="cargarDatosMoto($event)"  v-for="moto in DatosMotosEgresos.MotosAmarillas"  :key="moto.id" :moto="moto">
+                        </card>
+            </div>
+
+            <div class="row contenidoColor">
+                <h1 class="bg-gradient-danger"> Motos Rojas</h1>
+
+                        <card @MostrarIngEgre="cargarDatosMoto($event)"  v-for="moto in DatosMotosEgresos.MotosRojas"  :key="moto.id" :moto="moto">
+                        </card>
+            </div>
+
+            <div class="row contenidoColor">
+                <h1 class="bg-gradient-success"> Motos Verde</h1>
+
+                        <card @MostrarIngEgre="cargarDatosMoto($event)"  v-for="moto in DatosMotosEgresos.MotosVerdes"  :key="moto.id" :moto="moto">
+                        </card>
+            </div>
+        </section>
+
+
+        <div v-else class="row justify-content-md-center  loading">
+            <div class="col-3 alert-white text-center mt-5">
+                Espere por favor...
+                <h3 class="mt-8">
+                    <i class="fa fa-spin fa-sync"></i>
+                </h3>
+            </div>
+            <!-- <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            </div>
+            <span class="visually-hidden">Loading...</span> -->
         </div>
 
         <!-- <div v-if="CuentasAtv" class="row contenido_Egresos_ingresos" >
@@ -86,7 +120,9 @@ export default {
     methods:{
         async GetMotos(){
             const { data }  = await AtvApi.get('/motos')
-            this.DatosMotosEgresos = data.MotosAll
+                this.DatosMotosEgresos = data
+
+
         },
 
         cargarDatosMoto( DatosAtv ){
@@ -119,6 +155,17 @@ export default {
 </script>
 
 <style scoped>
+    .contenidoColor{
+
+        padding: 10px;
+        margin: 20px;
+    }
+    .contenidoColor h1{
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+        color: white;
+    }
     .contentenido-cuentas{
         display: block;
         margin: 2px;

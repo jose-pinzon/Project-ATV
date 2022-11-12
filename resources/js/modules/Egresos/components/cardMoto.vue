@@ -3,6 +3,7 @@
         <div class="col-sm-4 cardMo">
                 <div class="card">
                 <div class="card-body">
+                    <h3 class="card-title">Numero Moto: {{ moto.numero_Atv }}</h3>
                     <h5 class="card-title">{{ moto.placa }}</h5>
 
                     <button type="button" class="btn btn-primary" data-toggle="modal"

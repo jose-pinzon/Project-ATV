@@ -4,14 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EgresoResource;
 use App\Models\Egreso;
-use App\Models\Motos;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Svg\Tag\Path;
+
+use function PHPUnit\Framework\isNull;
 
 class EgresoController extends Controller
 {
+
+    public function generarPdf(Request $request){
+        $Date1 = $request['fecha1'];
+        $Date2 = $request['fecha2'];
+
+        if( $Date1  == NULL|| $Date2 == NULL){
+            $egresos = Egreso::all();
+            $Date1 = '';
+            $Date2 = '';
+        }else{
+            $egresos = Egreso::whereDate('fecha','>=', $Date1)
+            ->whereDate('fecha','<=', $Date2 )
+            ->get();
+        }
+
+        $gastoTotal=0;
+        foreach ($egresos as $egre) {
+            $gastoTotal += $egre->cantidad;
+        }
+
+        $pdf = PDF::loadView('sistema.vistas.Egresos.generar-pdf', compact('egresos','gastoTotal','Date1','Date2'));
+        $pdf->setPaper('A4', 'landscape');
+        return $pdf->download('ejemplo.pdf');
+
+    }
+
+
     public function datosCompletosEgresos(){
         $egresos = EgresoResource::collection(Egreso::with('moto')->get());
-        return Response()->json($egresos, 200);
+        return Response()->json($egresos, 202);
     }
 
     public function vista(){
@@ -25,12 +55,26 @@ class EgresoController extends Controller
     public function index(Request $request)
     {
         $pagina = intval($request['num_filas']);
-
-        if ($pagina == null) {
-            $pagina = 4 ;
+        while ($pagina == null) {
+            $pagina = 5;
         }
 
-        $egresos = EgresoResource::collection(Egreso::with(['moto'])->orderBy('id', 'DESC')->paginate($pagina));
+        $startdate = $request['inicio_fecha'];
+        $enddate = $request['fin_fecha'];
+        $enrutador = $request['enrutador'];
+
+        if( $enrutador == 0){
+            $egresos = EgresoResource::collection(Egreso::with(['moto'])
+            ->orderBy('id', 'DESC')
+            ->paginate($pagina));
+        }else{
+            $egresos = EgresoResource::collection(Egreso::with(['moto'])
+            ->orderBy('id', 'DESC')
+            ->whereDate('fecha','>=', $startdate)
+            ->whereDate('fecha','<=', $enddate )
+            ->paginate($pagina));
+        }
+
 
         return[
             'pagina' => $pagina,
@@ -68,7 +112,8 @@ class EgresoController extends Controller
             'tipo_gasto' => 'required',
             'gasto' => 'required',
             'cantidad' => 'required|min:2',
-            'moto_id' => 'required'
+            'moto_id' => 'required',
+            'fecha' => 'required'
         ]);
 
 
@@ -77,6 +122,7 @@ class EgresoController extends Controller
             'gasto' => $data['gasto'],
             'cantidad' => $data['cantidad'],
             'moto_id' => $data['moto_id'],
+            'fecha' => $data['fecha']
         ]);
 
         return response()->json(['message'=> 'Moto guardado con exito' ]);
@@ -126,6 +172,7 @@ class EgresoController extends Controller
      */
     public function destroy(Egreso $egreso)
     {
-        //
+        $egreso->delete();
+        return response()->json(['message'=>'se elimino correctemente']);
     }
 }
