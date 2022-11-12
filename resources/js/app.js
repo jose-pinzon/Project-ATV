@@ -4,9 +4,6 @@ window.Vue = require('vue').default;
 // import axios from 'axios';
 // Vue.use(axios);
 //componentes
-
-import App from './components/App.vue'
-
 // main.js
 import Vue from 'vue';
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -26,10 +23,6 @@ Vue.use(VueSweetalert2, options);
 
 // If you don't need the styles, do not connect
 
-
-
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -46,7 +39,8 @@ Vue.component('clientes-component', require('./modules/Clientes/Cliente.vue').de
 Vue.component('guias-component', require('./modules/Guias/Guia.vue').default);
 Vue.component('horarios-component', require('./modules/Horarios/Horario.vue').default);
 Vue.component('reserva-component', require('./modules/Reserva/Reserva.vue').default);
-
+Vue.component('servicios-component',require('./modules/Servicios/Servicio.vue').default);
+Vue.component('ingresos-component',require('./modules/Ingresos/Ingreso.vue').default);
 
 Vue.component('moment', require('./components/moments.vue').default);
 Vue.component('agregar-egreso', require('./modules/Egresos/views/agregarEgreso.vue').default);

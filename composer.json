@@ -6,7 +6,11 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+<<<<<<< HEAD
         "barryvdh/laravel-dompdf": "^2.0",
+=======
+        "cviebrock/eloquent-sluggable": "*",
+>>>>>>> 3d44aca7799774d3011548f90af7ce78000a9a5a
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.6.3",
@@ -14,7 +18,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
-        "laraveles/spanish": "^1.5"
+        "laraveles/spanish": "^1.5",
+        "mpdf/mpdf": "^8.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

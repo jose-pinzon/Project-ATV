@@ -26,6 +26,17 @@ Route::get('/', function () {
 });
 
 
+Auth::routes();
+
+Route::group(['middleware' => ['auth', 'verified']], function(){
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/Motos', [MotosController ::class, 'vistaMotos'])->name('moto.index');
+    Route::get('/addegreso', [EgresoController::class, 'create'])->name('egreso.vista');
+
+    Route::get('/Egresos', [EgresoController::class, 'vista'])->name('egreso.index');
+
+
 //modulo clientes
 Route::get('/clientes', [App\Http\Controllers\ClienteController::class, 'returnvista'])->name('clientes');
 Route::get('/clients', [App\Http\Controllers\ClienteController::class, 'index'])->name('cients');
@@ -51,6 +62,9 @@ Route::put('/horarios/desactivar', [App\Http\Controllers\HorarioController::clas
 Route::get('/horarios/select', [App\Http\Controllers\HorarioController::class, 'selectHorarios'])->name('horarios/horarios');
 
 //Modulo servicio
+Route::get('/servicios',[App\Http\Controllers\ServicioController::class, 'returnVista'])->name('servicios');
+Route::get('/servicios/index',[App\Http\Controllers\ServicioController::class, 'index'])->name('servicios/index');
+Route::put('/servicios/update',[App\Http\Controllers\ServicioController::class, 'update'])->name('servicios/update');
 Route::get('/capture/servicios', [App\Http\Controllers\ServicioController::class, 'servicios'])->name('capture/servicios');
 
 //MODULO RESERVAS
@@ -60,10 +74,14 @@ Route::get('/reservas/all', [App\Http\Controllers\ReservaController::class, 'All
 Route::post('/reservas/store', [App\Http\Controllers\ReservaController::class, 'StoreReserva'])->name('reservas/store');
 Route::put('/reservas/update', [App\Http\Controllers\ReservaController::class, 'updateReserva'])->name('reservas/update');
 Route::put('/reservas/updateEstado', [App\Http\Controllers\ReservaController::class, 'cambiarEstado'])->name('reservas/updateEstado');
-
-Auth::routes();
-
-Route::group(['middleware' => ['auth', 'verified']], function(){
+Route::get('/reserva/reporte/{slug}', [App\Http\Controllers\PdfReservController::class, 'generarPdfReserva']);
+Route::post('reservas/reporte/consulta', [App\Http\Controllers\PdfReservaAllController::class, 'PdfRango'])->name('reservas.pdf');
+//modulo de ingresos
+Route::get('ingresos',[App\Http\Controllers\IngresoController::class,'returnVista'])->name('ingresos');
+Route::get('ingresos/index',[App\Http\Controllers\IngresoController::class,'index'])->name('ingresos.index');
+Route::get('ingresos/all',[App\Http\Controllers\IngresoController::class,'allIngresos'])->name('ingresos.all');
+Route::post('ingreso/store',[App\Http\Controllers\IngresoController::class, 'store'])->name('ingreso.store');
+Route::post('ingresos/reporte/consulta', [App\Http\Controllers\PdfIngresoController::class, 'PdfRango'])->name('ingresos.pdf');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/Motos', [MotosController ::class, 'vistaMotos'])->name('moto.index');

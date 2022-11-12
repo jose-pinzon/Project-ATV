@@ -9,17 +9,27 @@
           
           <div class="form-group row" id="navegador">
               <div class="col-md-10">
+                <form method="post" :action="action">
+
+                  <input type="hidden" name="_token" v-bind:value="csrf">
+             
                   <div class="input-group">
-                      <input type="date" class="form-control" v-model="fecha_inicial"> <span>A</span>
-                      <input type="date" class="form-control" v-model="fecha_final">
+                  
+                      <input type="date" class="form-control" required name="fecha_1" v-model="fecha_inicial"> <span>A</span>
+                      <input type="date" class="form-control"   :min="date()" required name="fecha_2" v-model="fecha_final">
                       <!-- <button type="button"  class="btn btn-primary" ><i class="fa fa-search"></i> Buscar</button> -->
-                      <button class="btn btn-info" style="margin-left:10px" @click="getReservas(1)">Hoy</button>
-                      <button class="btn btn-info" style="margin-left:10px" @click="AllReservas(1)">Todos</button>
-                      <button class="btn btn-danger" style="margin-left:10px">PDF</button>
-                      <button class="btn btn-success" style="margin-left:10px">Excel</button>
+                      <button type="button"  class="btn btn-info" style="margin-left:10px" @click="getReservas(1)">Hoy</button>
+                      <button type="button" class="btn btn-info" style="margin-left:10px" @click="AllReservas(1)">Todos</button>
+                      <button class="btn btn-danger" style="margin-left:10px" type="submit"><i class="fas fa-file-pdf"></i></button>
+                      <!-- pendiente logica en futuras actualizaciones -->
+                      <button class="btn btn-success" style="margin-left:10px" hidden>Excel</button>
+                   
                   </div>
+                </form>
               </div>
           </div>
+
+          
 
           <table class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -50,8 +60,9 @@
                   <td><span class="badge badge-success">REALIZADO</span></td>
                 </template>  
                 <td>
-                    <button type="button" class="btn btn-sm btn-primary" @click="DetallesReserva(reserva)">Detales</button>
-                    <button type="button"  class="btn btn-sm btn-warning" @click="editReserva(reserva)" v-if="reserva.estado=='PENDIENTE'">Editar</button>
+                    <button type="button" class="btn btn-sm btn-primary" @click="DetallesReserva(reserva)"><i class="fas fa-info-circle"></i></button>
+                    <button type="button"  class="btn btn-sm btn-warning" @click="editReserva(reserva)" v-if="reserva.estado=='PENDIENTE'"><i class="fas fa-edit"></i></button>
+                    <a :href="'reserva/reporte/'+ reserva.slug" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i></a>
                 </td>
               </tr>   
             </tbody>
@@ -307,7 +318,6 @@
           </div>
           <div class="modal-body">
             <div class="form-row">
-              
               <div class="col">
                 <label for="exampleInputPassword1">Total a pagar</label>
                 <input type="text" class="form-control" placeholder="Total" disabled v-model="total">
@@ -316,14 +326,29 @@
                 <label for="exampleInputPassword1">Metodo de pago</label>
                 <select name="" id="" class="form-control" v-model="formapago">
                   <option value="0" disabled>Elige metodo de pago</option>
-                  <option value="TARJETA">TARJETA</option>
                   <option value="EFECTIVO">EFECTIVO</option>
+                  <option value="TARJETA">TARJETA</option>
                   <option value="TRANSFERENCIA">TRANSFERENCIA</option>
                 </select>
               </div>
             </div>
+
+            <div class="form-row">
+                <div class="col">
+                  <label for="exampleInputPassword1">Descripcion</label>
+                  <textarea name="" id="" cols="" rows="5" class="form-control" v-model="descripcion">
+
+                  </textarea>
+                </div>
+                <!-- //movimiento de banco -->
+                <div class="col" v-if="formapago!='EFECTIVO'">
+                  <label for="">Movimiento</label>
+                  <input type="text" class="form-control" placeholder="N° Operacion" v-model="mov_banco">
+                </div>
+            </div>
           </div>
           <div class="modal-footer">
+            
             <button type="button" class="btn btn-outline-danger" data-dismiss="modal" @click="CerrarModalVender()">Salir</button>
             
             <button type="button" class="btn btn-success" @click="vender()">Listo</button>
@@ -342,9 +367,12 @@ const moment = require('moment');
 
 //vue select
 import vSelect from 'vue-select';
+
+
 import 'vue-select/dist/vue-select.css';
 
 export default {
+    props:['action','csrf'],
     data(){
         return{
           //array captura reservas
@@ -420,14 +448,19 @@ export default {
           pais:'',
           ciudad:'',
           //variables ventas
-          formapago:'TARJETA',
-          
+          formapago:'EFECTIVO',
+          descripcion:'',
+          mov_banco:'',
+          cantidad_ingreso:0,
+        
         }
     },
 
+
+
     components:{
 
-      vSelect
+      vSelect,
 
     },
 
@@ -973,6 +1006,7 @@ export default {
           this.total=data['total'];
           this.id_reserva=data['id_reserva'];
           this.id_detalle_reserva=data['id_detalle_reserva'];
+          this.cantidad_ingreso = data['sencillo'] + data['doble'];
         },
         CerrarModalVender(){  
           $("#vender").modal('hide');
@@ -983,8 +1017,59 @@ export default {
           this.formapago='TARJETA';
         },
         vender(){
-          $("#vender").modal('hide');
-          this.updateEstado();
+         
+          let e = this;  
+          let url = '/ingreso/store';
+
+          var arrayIngreso = {
+            'descripcion':this.descripcion,
+            'cantidad':this.cantidad_ingreso,
+            'forma_pago':this.formapago,
+            'mov_banco':this.mov_banco,
+            'pago_unitario':this.total,
+            'total':this.total,
+            'id_detalle_reserva':this.id_detalle_reserva
+          };
+
+          axios.post(url, arrayIngreso).then(function (response) {
+            // deja vacio
+            e.descripcion='';
+            e.cantidad_ingreso=0;
+            e.forma_pago = 'EFECTIVO';
+            e.mov_banco = '';
+            e.total=0.0;
+            e.id_detalle_reserva=0;
+            $("#vender").modal('hide');
+            e.updateEstado();
+            if(this.reservas.length){
+              e.AllReservas();
+            }else{
+              e.getReservas();
+            }
+           
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
+         
+        },
+        pdfReporte(){
+          let e = this;  
+          let url = '/reservas/reporte/all';
+          var arrayFechas = {
+            'fecha_inicial':this.fecha_inicial,
+            'fecha_final':this.fecha_final,
+          };
+          axios.get(url, arrayFechas).then(function (response) {
+            
+      
+        
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          });
         }
         
     },
