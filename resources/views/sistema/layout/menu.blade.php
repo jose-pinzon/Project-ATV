@@ -25,7 +25,8 @@
       <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Forms</h6>
-          <a class="collapse-item" href="{{route('egreso.index')}}">Ver datos</a>
+          <a class="collapse-item" href="{{route('egreso.index')}}">Ver Egresos</a>
+          <a class="collapse-item" href="{{route('egresoX.Moto')}}">Ver datos por moto </a>
           <a class="collapse-item" href="{{route('egreso.vista')}}">Crear nuevo</a>
         </div>
       </div>
@@ -40,12 +41,14 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Tables</h6>
           <a class="collapse-item" href="{{route('moto.index')}}"> Motos </a>
-          <a class="collapse-item" href="datatables.html">DataTables</a>
+          <a class="collapse-item" href="#">DataTables</a>
         </div>
       </div>
     </li>
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('clientes')}}">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
         <i class="fas fa-fw fa-palette"></i>
         <span>Clientes</span>
       </a>

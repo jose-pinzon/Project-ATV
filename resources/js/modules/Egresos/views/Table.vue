@@ -1,8 +1,7 @@
 
-
 <template>
     <div>
-        <!--      Empieza Modal  Nuevo    -->
+        <!--  !    Empieza Modal  Nuevo    -->
         <Modal>
             <template v-slot:Titulo>
                 <h5 class="modal-title" id="exampleModalLabel"> Agregar nuevo dato </h5>
@@ -121,8 +120,13 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1"> Color </label>
-                        <input type="text" class="form-control" :class="{ 'is-invalid' : Errores.color}" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="escriba aqui..." v-model="DatosGuardar.color">
+
+                        <select class="form-control"  :class="{ 'is-invalid' : Errores.color}" id="exampleFormControlSelect1" v-model="DatosGuardar.color">
+                            <option value="">Elige un color</option>
+                            <option value="Amarrilla">Amarrilla</option>
+                            <option value="Roja">Roja</option>
+                            <option value="Verde">Verde</option>
+                        </select>
 
 
 
@@ -141,23 +145,9 @@
             </template>
 
         </Modal>
-        <!-- Termina Modal -->
+        <!--? Termina Modal -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--Modal para poder editar -->
+    <!-- !  Modal para poder editar -->
     <ModalD  v-if="detallesMoto">
         <template v-slot:Titulo>
             <h5 class="modal-title">  Editar </h5>
@@ -295,8 +285,10 @@
                 </form>
         </template>
     </ModalD>
-    <!-- Fin del modal para editar -->
-        <section>
+    <!--? Fin del modal para editar -->
+
+
+    <section>
         <button  class="btn btn-primary btn-add" data-toggle="modal" data-target="#exampleModal"
                         id="#myBtn">
                         Agregar
@@ -360,7 +352,7 @@
         <button  class="boton_personal" @click="Regresar">No mostrar</button>
         <button  class="boton_personal btn-edit" data-toggle="modal" data-target="#exampleModalScrollable"
                         id="#myBtn2">
-                    editar
+                    Editar
         </button>
 
         <div class="fix"> </div>
@@ -419,16 +411,24 @@
 
         methods:{
 
+            MotrarAlerta(title, message, type ){
+                this.$swal.fire(
+                title,
+                message,
+                type
+                )
+            },
+
             Regresar(){
                 this.detallesMoto = null
             },
-            mostrarMensaje( id ){
-                this.detallesMoto = id
+            mostrarMensaje( datos ){
+                this.detallesMoto = datos
             },
 
             async getAtv( page ){
                 const { data } = await AtvApi.get(`/motoAtv?page=${page}`)
-                    this.datosFilas = data.motos.data
+                    this.datosFilas = data.motos
                     this.pagination = data.pagination
             },
 
@@ -437,7 +437,6 @@
                 try {
                     const { data } = await AtvApi.post('/motoAtv', this.DatosGuardar)
                     this.getAtv()
-
                     this.DatosGuardar.numero_Atv = 0
                     this.DatosGuardar.max_velocidad = 0
                     this.DatosGuardar.placa = ''
@@ -448,7 +447,8 @@
                     this.DatosGuardar.modelo = ''
                     this.DatosGuardar.color = ''
 
-                    return alert(` ${ data.message } `)
+                    this.MotrarAlerta('Listo',  data.message , 'success')
+                    // return alert(` ${ data.message } `)
                 } catch (error){
                     if( error.response.status === 422){
                         this.Errores = error.response.data.errors
@@ -460,7 +460,7 @@
             async EditarAtv(id){
                 try {
                     const { data } = await AtvApi.put(`/motoAtv/${ id }`, this.detallesMoto)
-                    this.mensaje = data.message
+                    this.MotrarAlerta('Actualizado',  data.message , 'success')
                     this.getAtv()
                 } catch (error) {
                     if( error.response.status === 422){
@@ -481,15 +481,38 @@
                         _method:'delete'
                     }
 
-                try{
-                    const confirmar = confirm('¿Esta seguro de eliminar este registro?')
-                    if(!confirmar) return
-                    const { data } = await AtvApi.post(`/motoAtv/${ id }`, params)
-                    this.getAtv()
-                    alert(data.message)
-                }catch(e){
-                        this.Errores = error.response.data
-                }
+                        const swalWithBootstrapButtons = this.$swal.mixin({
+                        customClass: {
+                            confirmButton: 'btn btn-success',
+                            cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                        })
+
+                        swalWithBootstrapButtons.fire({
+                        title: '¿Esta seguro de eliminar este registro?',
+                        text: "Una vez eliminado ya no se podra recuperarr",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Aceptar !',
+                        cancelButtonText: 'Cancelar !',
+                        reverseButtons: true
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            AtvApi.post(`/motoAtv/${ id }`, params).then(res =>{
+                                this.getAtv()
+                                swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                `${res.data.message}`,
+                                'success'
+                                )
+                            }).
+                            catch(e => {
+                                console.log(e);
+                            })
+                            }
+                        })
+
             },
 
 
@@ -518,7 +541,6 @@
                 if(to >= this.pagination.last_page){
                     to = this.pagination.last_page
                 }
-
 
                 let pagesA = []
                 while(from <= to){

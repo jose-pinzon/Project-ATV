@@ -7,10 +7,10 @@
                         <td>{{egreso.cantidad}} Pesos</td>
                         <td>{{egreso.moto.numero_Atv}} - {{egreso.moto.color}}</td>
                         <td>
-                            <moment :fecha="egreso.created_at"></moment>
+                            <moment :fecha="egreso.fecha"></moment>
                         </td>
                         <td>
-                            <a href="" class="btn btn-primary"> boton </a>
+                            <a @click="$emit('eliminar', egreso.id)" class="btn btn-danger text-white font-bold"> Eliminar </a>
                         </td>
                     </tr>
         </tbody>
@@ -26,6 +26,9 @@ export default {
             type:Array,
             require:true
         }
+    },
+    methods:{
+
     }
 
 }

@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\MotosResource;
 use App\Models\Motos;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class MotosController extends Controller
 {
+
+
+
+
+
 
     public function cambiarEstado(Request $request,Motos $motos){
         //!Leer nuevo estado
@@ -17,11 +23,11 @@ class MotosController extends Controller
         return response()->json(['res' => 'Correcto']);
     }
 
-
-
     public function vistaMotos(){
         return view('sistema.vistas.Egresos.index');
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +35,9 @@ class MotosController extends Controller
      */
     public function index(Request $request)
     {
-        $motos = Motos::orderBy('id', 'DESC')->paginate(3);
+        // $motos = Motos::orderBy('id', 'DESC')->paginate(7);
+
+        $motos = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->paginate(5));
 
         return[
             'pagination' => [
@@ -42,7 +50,6 @@ class MotosController extends Controller
             ],
             'motos' => $motos
         ];
-        // return response()->json( $motos, 200 );
     }
 
     /**
@@ -52,8 +59,16 @@ class MotosController extends Controller
      */
     public function create()
     {
-        $MotosAll = Motos::all();
-        return Response()->json($MotosAll, 200);
+        $MotosAll = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->get());
+        $MotosAmarillas = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Amarilla')->get());
+        $MotosRojas = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Roja')->get());
+        $MotosVerdes = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Verde')->get());
+        return Response()->json([
+            'MotosAll' =>$MotosAll,
+            'MotosAmarillas' =>$MotosAmarillas,
+            'MotosRojas' =>$MotosRojas,
+            'MotosVerdes' =>$MotosVerdes]
+            , 200);
     }
 
     /**

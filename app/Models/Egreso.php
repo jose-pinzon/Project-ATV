@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Egreso extends Model
 {
     use HasFactory;
-    public $with = ['moto'];
-
+    protected $with=['moto'];
     protected $fillable = [
         'tipo_gasto',
         'gasto',
         'cantidad',
         'moto_id',
+        'fecha'
     ];
 
 

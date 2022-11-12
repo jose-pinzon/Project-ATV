@@ -13,11 +13,11 @@
 export default {
     props:{
         estado:{
-            type:String,
+            type:Number,
             require:true
         },
         moto_id:{
-            type:String,
+            type:Number,
             require:true
         }
     },

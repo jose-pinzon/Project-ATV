@@ -41,7 +41,8 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       require: true
     }
-  }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -146,26 +147,28 @@ var render = function () {
           ),
         ]),
         _vm._v(" "),
-        _c("td", [_c("moment", { attrs: { fecha: egreso.created_at } })], 1),
+        _c("td", [_c("moment", { attrs: { fecha: egreso.fecha } })], 1),
         _vm._v(" "),
-        _vm._m(0, true),
+        _c("td", [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-danger text-white font-bold",
+              on: {
+                click: function ($event) {
+                  return _vm.$emit("eliminar", egreso.id)
+                },
+              },
+            },
+            [_vm._v(" Eliminar ")]
+          ),
+        ]),
       ])
     }),
     0
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("a", { staticClass: "btn btn-primary", attrs: { href: "" } }, [
-        _vm._v(" boton "),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

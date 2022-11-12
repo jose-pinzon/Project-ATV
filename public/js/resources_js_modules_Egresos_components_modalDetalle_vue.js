@@ -37,18 +37,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    detalles: {
-      type: Object,
-      require: true
-    }
-  },
-  data: function data() {
-    return {
-      datosDetalle: ''
-    };
-  }
+  props: ['datos']
 });
 
 /***/ }),
@@ -176,7 +167,12 @@ var render = function () {
               _c(
                 "div",
                 { staticClass: "modal-body" },
-                [_vm._t("contenido")],
+                [
+                  _vm._t("contenido"),
+                  _vm._v(
+                    "\n              " + _vm._s(_vm.datos) + "\n            "
+                  ),
+                ],
                 2
               ),
               _vm._v(" "),
