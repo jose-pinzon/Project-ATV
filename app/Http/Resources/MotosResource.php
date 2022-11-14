@@ -26,8 +26,8 @@ class MotosResource extends JsonResource
                 'modelo'=> $this->modelo ,
                 'color'=> $this->color ,
                 'activa'=> $this->activa,
-                'egresos' => EgresoResource::collection($this->whenLoaded('egresos'))
-
+                'egresos' => EgresoResource::collection($this->whenLoaded('egresos')),
+                'Ingresos' => IngresoResource::collection($this->whenLoaded('ingresos')),
         ];
     }
 }

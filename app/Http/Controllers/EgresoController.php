@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\EgresoResource;
 use App\Models\Egreso;
+use App\Models\Ingreso;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Svg\Tag\Path;
@@ -18,10 +19,15 @@ class EgresoController extends Controller
         $Date2 = $request['fecha2'];
 
         if( $Date1  == NULL|| $Date2 == NULL){
+            $ingresos = Ingreso::all();
             $egresos = Egreso::all();
             $Date1 = '';
             $Date2 = '';
         }else{
+            $ingresos = Ingreso::whereDate('fecha_hora', '>=' , $Date1)
+            ->whereDate('fecha_hora','<=', $Date2 )
+            ->get();
+
             $egresos = Egreso::whereDate('fecha','>=', $Date1)
             ->whereDate('fecha','<=', $Date2 )
             ->get();
@@ -32,7 +38,7 @@ class EgresoController extends Controller
             $gastoTotal += $egre->cantidad;
         }
 
-        $pdf = PDF::loadView('sistema.vistas.Egresos.generar-pdf', compact('egresos','gastoTotal','Date1','Date2'));
+        $pdf = PDF::loadView('sistema.vistas.Egresos.generar-pdf', compact('egresos','gastoTotal','Date1','Date2','ingresos'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('ejemplo.pdf');
 

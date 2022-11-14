@@ -18,6 +18,7 @@ class CreateEgresosTable extends Migration
             $table->string('tipo_gasto');
             $table->text('gasto');
             $table->float('cantidad');
+            $table->date('fecha');
             $table->string('moto_id')->references('id')->on('motos');
             $table->timestamps();
         });

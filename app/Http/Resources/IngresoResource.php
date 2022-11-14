@@ -14,6 +14,11 @@ class IngresoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return[
+            "id_ingreso"=> $this->id,
+            "fecha_hora"=> $this->tipo_gasto ,
+            "cantidad"=> $this->gasto ,
+            "total"=> $this->cantidad
+        ];
     }
 }

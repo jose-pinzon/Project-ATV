@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    {{$ingresos}}
     @if ($Date1 || $Date2)
         <h1>Egresos de {{ $Date1 }} Al {{ $Date2}}  </h1>
     @else
