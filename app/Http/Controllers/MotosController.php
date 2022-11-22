@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\MotosResource;
 use App\Models\Motos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
 class MotosController extends Controller
@@ -59,10 +60,10 @@ class MotosController extends Controller
      */
     public function create()
     {
-        $MotosAll = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->get());
-        $MotosAmarillas = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Amarilla')->get());
-        $MotosRojas = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Roja')->get());
-        $MotosVerdes = MotosResource::collection(Motos::with('egresos')->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Verde')->get());
+        $MotosAll = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->get());
+        $MotosAmarillas = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Amarilla')->get());
+        $MotosRojas = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Roja')->get());
+        $MotosVerdes = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Verde')->get());
         return Response()->json([
             'MotosAll' =>$MotosAll,
             'MotosAmarillas' =>$MotosAmarillas,
@@ -102,7 +103,8 @@ class MotosController extends Controller
             'propietario' => $data[ 'propietario'],
             'marca' => $data[ 'marca'],
             'modelo' => $data['modelo'],
-            'color' => $data['color']
+            'color' => $data['color'],
+            'imagen' => $request['imagen']
         ]);
 
         return response()->json(['message' => 'Moto guardado con exito']);
@@ -117,6 +119,31 @@ class MotosController extends Controller
     public function show(Motos $motos)
     {
         //
+    }
+
+    public function imagen(Request $request)
+    {
+        $imagen = $request->file('file');
+        $nombreImagen = time() . '.'.$imagen->extension();
+        $imagen->move(public_path('storage/motos'),$nombreImagen);
+
+
+
+        return response() ->json(['message' => $nombreImagen]);
+    }
+
+
+    public function borrarImagen(Request $request){
+        if($request->ajax()){
+
+            $imagen = $request->get('imagen');
+            //ESTE file es un metodo de laravel para saber si existe archivo
+            if( File::exists( 'storage/motos/'.$imagen )){
+                File::delete('storage/motos/'.$imagen);
+            }
+
+            return response('Imagen Eliminada', 200);
+        }
     }
 
     /**
@@ -159,6 +186,7 @@ class MotosController extends Controller
         $motos->propietario = $data['propietario'];
         $motos->marca = $data['marca'];
         $motos->modelo = $data['modelo'];
+        $motos->imagen = $request['imagen'];
         $motos->color = $data['color'];
 
         $motos->save();

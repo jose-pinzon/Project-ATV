@@ -9,19 +9,20 @@
 </head>
 <body>
 
-    {{$ingresos}}
+
     @if ($Date1 || $Date2)
         <h1>Egresos de {{ $Date1 }} Al {{ $Date2}}  </h1>
+        <moment :fecha="{{$Date1}}"  ></moment>
     @else
         <h1>Todos los datos de egresos</h1>
     @endif
     <div class="contenido_cabecera">
         <article class="article1">
-            <h2>Ingreso: <span>127</span> </h2>
-            <h2>Egreso:  <span>{{$gastoTotal}}</span></h2>
+            <h2>Ingreso: <span> ${{$ingreso}}</span> </h2>
+            <h2>Egreso:  <span>${{$gastoTotal}}</span></h2>
         </article>
         <article class="article2">
-            <h2>Ganacias:  <span> 444 </span></h2>
+            <h2>Ganacias:  <span> ${{$Ganancias}} </span></h2>
         </article>
         <div class="display-clear"></div>
     </div>

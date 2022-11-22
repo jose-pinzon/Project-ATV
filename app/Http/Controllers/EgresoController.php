@@ -6,6 +6,7 @@ use App\Http\Resources\EgresoResource;
 use App\Models\Egreso;
 use App\Models\Ingreso;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Svg\Tag\Path;
 
@@ -34,11 +35,22 @@ class EgresoController extends Controller
         }
 
         $gastoTotal=0;
+        $ingreso=0;
+
         foreach ($egresos as $egre) {
             $gastoTotal += $egre->cantidad;
         }
 
-        $pdf = PDF::loadView('sistema.vistas.Egresos.generar-pdf', compact('egresos','gastoTotal','Date1','Date2','ingresos'));
+        foreach ($ingresos as $ingre) {
+            $ingreso += $ingre->total;
+        }
+
+        $Ganancias = $ingreso - $gastoTotal;
+        $date = Carbon::parse($Date1);
+        $date->isoFormat('dddd D');
+
+
+        $pdf = PDF::loadView('sistema.vistas.Egresos.generar-pdf', compact('date','egresos','gastoTotal','Date1','Date2','ingreso','Ganancias'));
         $pdf->setPaper('A4', 'landscape');
         return $pdf->download('ejemplo.pdf');
 

@@ -30,6 +30,10 @@ Auth::routes();
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
 
+
+    Route::post('/motos/imagen',[ MotosController::class, 'imagen' ])->name('motos.imagen');
+    Route::post('/motos/borrarimagen',[ MotosController::class, 'borrarImagen' ])->name('borrar.imagen');
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/Motos', [MotosController ::class, 'vistaMotos'])->name('moto.index');
     Route::get('/addegreso', [EgresoController::class, 'create'])->name('egreso.vista');

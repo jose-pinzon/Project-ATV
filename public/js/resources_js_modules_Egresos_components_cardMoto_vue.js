@@ -28,6 +28,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['moto'],
@@ -35,6 +39,11 @@ __webpack_require__.r(__webpack_exports__);
     Modal: (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineAsyncComponent)(function () {
       return __webpack_require__.e(/*! import() */ "resources_js_modules_Egresos_components_modalDetalle_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/modalDetalle.vue */ "./resources/js/modules/Egresos/components/modalDetalle.vue"));
     })
+  },
+  computed: {
+    imagenMostrar: function imagenMostrar() {
+      return "/storage/motos/".concat(this.moto.imagen);
+    }
   }
 });
 
@@ -191,15 +200,18 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "col-sm-4 cardMo" }, [
-    _c("div", { staticClass: "card" }, [
+    _c("div", { staticClass: "card", staticStyle: { width: "18rem" } }, [
+      _c("img", {
+        staticClass: "card-img-top",
+        attrs: { src: _vm.imagenMostrar, alt: "Sin imagen" },
+      }),
+      _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
-        _c("h3", { staticClass: "card-title" }, [
+        _c("h5", { staticClass: "card-title" }, [
           _vm._v("Numero Moto: " + _vm._s(_vm.moto.numero_Atv)),
         ]),
         _vm._v(" "),
-        _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.moto.placa)),
-        ]),
+        _c("p", { staticClass: "card-text" }, [_vm._v(_vm._s(_vm.moto.placa))]),
         _vm._v(" "),
         _c(
           "button",

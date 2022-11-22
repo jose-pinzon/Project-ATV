@@ -25,6 +25,7 @@ class MotosResource extends JsonResource
                 'marca'=> $this->marca,
                 'modelo'=> $this->modelo ,
                 'color'=> $this->color ,
+                'imagen' => $this->imagen,
                 'activa'=> $this->activa,
                 'egresos' => EgresoResource::collection($this->whenLoaded('egresos')),
                 'Ingresos' => IngresoResource::collection($this->whenLoaded('ingresos')),

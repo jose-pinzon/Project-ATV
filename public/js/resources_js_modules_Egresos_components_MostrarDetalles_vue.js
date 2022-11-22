@@ -32,6 +32,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     datos: {
@@ -39,8 +40,10 @@ __webpack_require__.r(__webpack_exports__);
       require: true
     }
   },
-  data: function data() {
-    return {};
+  computed: {
+    imagen: function imagen() {
+      return "/storage/motos/".concat(this.datos.imagen);
+    }
   }
 });
 
@@ -249,6 +252,8 @@ var render = function () {
         _vm._v("  " + _vm._s(_vm.datos.color) + "  "),
       ]),
     ]),
+    _vm._v(" "),
+    _c("img", { attrs: { src: _vm.imagen, alt: "", width: "200" } }),
     _vm._v(" "),
     _c("div", { staticClass: "display-fix" }),
   ])

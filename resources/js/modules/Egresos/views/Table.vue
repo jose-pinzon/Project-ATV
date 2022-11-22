@@ -118,6 +118,23 @@
                         </small>
                     </div>
 
+                    <!--!parte dropzone  -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"> Imagen </label>
+                        <vue-dropzone ref="myVueDropzone" id="dropzone"
+                            :options="dropzoneOptions"
+                            @vdropzone-success="SaveImage"
+                            @vdropzone-error="ErrorImage"
+                            @vdropzone-removed-file="ImageDelete"
+                            @vdropzone-max-files-exceeded="vdropzonemaxfilesexceeded">
+                        </vue-dropzone>
+                        <!-- <input type="hidden"    v-model="DatosGuardar.imagen"  name="imagen" id="imagen"> -->
+                            <!-- <p id="error"></p> -->
+                        <span v-if="errorImage"> {{errorImage}} </span>
+                    </div>
+
+
+
                     <div class="form-group">
                         <label for="exampleInputEmail1"> Color </label>
 
@@ -170,8 +187,6 @@
 
         </template>
         <template v-slot:contenido>
-
-
             <form @submit.prevent="EditarAtv(detallesMoto.id)">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Numero Atv</label>
@@ -268,6 +283,20 @@
                             {{Errores.modelo[0]}}
                         </small>
                     </div>
+                    <!--!parte dropzone  -->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1"> Imagen </label>
+                        <vue-dropzone ref="myVueDropzone" id="dropzone"
+                            :options="dropzoneOptions"
+                            @vdropzone-success="SaveImageUpdate"
+                            @vdropzone-error="ErrorImage"
+                            @vdropzone-removed-file="ImageDeleteupdate"
+                            @vdropzone-max-files-exceeded="vdropzonemaxfilesexceeded">
+                        </vue-dropzone>
+
+                        <img v-show="imagen" :src="imagen" alt="" width="50" class="img-thumbnail img-edit" >
+                        <span v-if="errorImage"> {{errorImage.message}} </span>
+                    </div>
 
                     <div class="form-group">
                         <label for="exampleInputEmail1"> Color </label>
@@ -293,7 +322,6 @@
                         id="#myBtn">
                         Agregar
         </button>
-
 
         <table v-if="datosFilas" class="table align-items-center table-flush">
             <thead class="thead-light">
@@ -367,16 +395,30 @@
 <script>
     import { defineAsyncComponent } from 'vue'
     import AtvApi from '../../../api/AtvApi'
+    import vue2Dropzone from 'vue2-dropzone'
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css'
     export default {
         components:{
             Fila: defineAsyncComponent(() => import('../components/filas.vue')),
             Modal: defineAsyncComponent(() => import('../components/modal.vue')),
             ModalD: defineAsyncComponent(() => import('../components/modalDetalle.vue')),
-            Detalles: defineAsyncComponent(() => import('../components/MostrarDetalles.vue'))
+            Detalles: defineAsyncComponent(() => import('../components/MostrarDetalles.vue')),
+            vueDropzone: vue2Dropzone
         },
 
         data(){
             return{
+                dropzoneOptions: {
+                    url: '/motos/imagen',
+                    dictDefaultMessage:'Sube aqui tu archivo',
+                    acceptedFiles:".png, .jpg,.jpeg, . gif, .bmp",
+                    addRemoveLinks:true,
+                    dictRemoveFile:'Borrar',
+                        maxFiles:1,//para indicar cuanto archivos maximos aceptara
+                    headers: {
+                        'X-CSRF-TOKEN':document.querySelector('meta[name=csrf-token]').content
+                    },
+                },
                 detallesMoto:null,
                 datosFilas:null,
                 DatosGuardar:{
@@ -389,9 +431,11 @@
                     marca:'',
                     modelo:'',
                     color:'',
+                    imagen:null
                 },
                 mensaje:null,
                 mensajeError:null,
+                errorImage:null,
                 Errores:{},
                 pagination:{
                     'total':0,
@@ -410,6 +454,41 @@
         },
 
         methods:{
+            async vdropzonemaxfilesexceeded(file){
+                if(file[1] != null){
+                            removeFile(file[0])//Eliminar archivo anterior
+                            addFile(file)//agregar ael nuevo archivo
+                }
+            },
+            async SaveImage(file, response){
+                this.DatosGuardar.imagen = response.message
+            },
+            async SaveImageUpdate(file, response){
+                this.ImageDeleteupdate()
+                this.detallesMoto.imagen = response.message
+                console.log(this.detallesMoto.imagen)
+            },
+
+            async ErrorImage(file, message){
+                this.errorImage = message
+            },
+
+            async ImageDeleteupdate(){
+                        let params = {
+                            imagen: this.detallesMoto.imagen
+                        }
+                        axios.post('/motos/borrarimagen',params )
+                                .then(response => console.log(response))
+            },
+
+            async ImageDelete(){
+                        let params = {
+                            imagen: this.DatosGuardar.imagen
+                        }
+                        axios.post('/motos/borrarimagen',params )
+                                .then(response => console.log(response))
+            },
+
 
             MotrarAlerta(title, message, type ){
                 this.$swal.fire(
@@ -445,6 +524,7 @@
                     this.DatosGuardar.propietario = ''
                     this.DatosGuardar.marca = ''
                     this.DatosGuardar.modelo = ''
+                    this.DatosGuardar.imagen = ''
                     this.DatosGuardar.color = ''
 
                     this.MotrarAlerta('Listo',  data.message , 'success')
@@ -462,6 +542,7 @@
                     const { data } = await AtvApi.put(`/motoAtv/${ id }`, this.detallesMoto)
                     this.MotrarAlerta('Actualizado',  data.message , 'success')
                     this.getAtv()
+                    $('#exampleModalScrollable').modal('hide')
                 } catch (error) {
                     if( error.response.status === 422){
                         this.Errores = error.response.data.errors
@@ -524,6 +605,9 @@
 
         },
         computed:{
+            imagen(){
+                return `/storage/motos/${this.detallesMoto.imagen}`
+            },
             isActived(){
                 return this.pagination.current_page
             },
@@ -558,6 +642,11 @@
 
 <style scoped>
 
+    .img-edit{
+        margin: 5px;
+        margin-top: 10px;
+    }
+
     nav{
        margin-left: 20px;
     }
@@ -570,11 +659,13 @@
         margin-bottom:20px;
     }
     .contenido_detalles{
+        overflow-y:scroll;
+        scroll-behavior: smooth;
         box-shadow: 1px 1px 8px black;
         border: 1px solid #ccc;
         background-color: #ffff;
         position: fixed;
-
+        max-height: 500px;
         left:10%;
         top: 15%;
         bottom: 5%;

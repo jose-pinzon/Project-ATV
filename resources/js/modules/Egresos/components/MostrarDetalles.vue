@@ -15,6 +15,7 @@
         <p><span>Modelo :</span>  {{datos.modelo}}  </p>
         <p><span>Color :</span>  {{datos.color}}  </p>
     </div>
+    <img :src="imagen" alt="" width="200" >
     <div class="display-fix"></div>
 </div>
 </template>
@@ -27,12 +28,11 @@ export default {
             require:true
         }
     },
-    data(){
-        return{
-           
+    computed:{
+        imagen(){
+            return `/storage/motos/${this.datos.imagen}`
         }
-    },
-
+    }
 }
 </script>
 
@@ -53,7 +53,7 @@ export default {
     .part2{
         display: block;
         padding: 2em;
-    }  
+    }
 
     .display-fix{
         float: none;

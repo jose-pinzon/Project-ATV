@@ -40,8 +40,7 @@
             <span class="visually-hidden">Loading...</span> -->
         </div>
 
-        <!-- <div v-if="CuentasAtv" class="row contenido_Egresos_ingresos" >
-        </div> -->
+
         <Modal  v-if="modalstatus" @on:close="modalstatus=false">
             <template v-slot:header>
 
@@ -121,8 +120,6 @@ export default {
         async GetMotos(){
             const { data }  = await AtvApi.get('/motos')
                 this.DatosMotosEgresos = data
-
-
         },
 
         cargarDatosMoto( DatosAtv ){

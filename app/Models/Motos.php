@@ -20,6 +20,7 @@ class Motos extends Model
         'marca',
         'modelo',
         'color',
+        'imagen',
         'activa'
     ];
 
@@ -27,7 +28,7 @@ class Motos extends Model
         return $this->hasMany(Egreso::class, 'moto_id' );
     }
 
-    // public function ingresos(){
-    //     return $this->hasMany(Ingreso::class, 'moto_id' );
-    // }
+    public function ingresos(){
+        return $this->hasMany(Ingreso::class, 'moto_id');
+    }
 }

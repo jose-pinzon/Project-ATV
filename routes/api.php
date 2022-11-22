@@ -31,6 +31,9 @@ Route::apiResource('/motoAtv', MotosController::class);
 Route::get('/motos',[ MotosController::class, 'create']);
 Route::post('/motos/{motos}',[MotosController::class, 'cambiarEstado']);
 
+//!Para imagen
+
+
 
 
 Route::post('/egresoAtv',[ EgresoController::class, 'store']);

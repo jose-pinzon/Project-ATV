@@ -31,20 +31,7 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-        aria-controls="collapseTable">
-        <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span>
-      </a>
-      <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Tables</h6>
-          <a class="collapse-item" href="{{route('moto.index')}}"> Motos </a>
-          <a class="collapse-item" href="#">DataTables</a>
-        </div>
-      </div>
-    </li>
+
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable2" aria-expanded="true"
@@ -71,37 +58,41 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Modulos</h6>
           <a class="collapse-item" href="{{route('ingresos')}}"> Ingresos </a>
-         
+
         </div>
       </div>
     </li>
-  
+
     <hr class="sidebar-divider">
     <div class="sidebar-heading">
       Administración
     </div>
     <li class="nav-item" >
-      <a class="nav-link"  href="{{route('clientes')}}">
-    <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i class="fas fa-fw fa-palette"></i>
+        <a class="nav-link"  href="{{route('moto.index')}}">
+          <i class="fas fa-fw fa-palette"></i>
+          <span>Motos</span>
+        </a>
+      </li>
+
+    <li class="nav-item" >
+        <a class="nav-link"  href="{{route('clientes')}}">
         <span>Clientes</span>
-      </a>
     </li>
+
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('guias')}}">
         <i class="fas fa-fw fa-palette"></i>
         <span>Guias</span>
       </a>
     </li>
- 
+
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('servicios')}}">
         <i class="fas fa-fw fa-palette"></i>
         <span>Servicios</span>
       </a>
     </li>
-   
+
 
     <hr class="sidebar-divider">
     <div class="version" id="version-ruangadmin"></div>
