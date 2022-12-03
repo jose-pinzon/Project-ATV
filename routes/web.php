@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\MotosController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EgresosController;
+use App\Http\Controllers\EscritorioController;
 use App\Http\Controllers\MotosController;
 use App\Http\Controllers\TipoServicioController;
 
@@ -94,6 +95,8 @@ Route::post('ingresos/reporte/consulta', [App\Http\Controllers\PdfIngresoControl
 
     Route::get('/Egresos', [EgresoController::class, 'vista'])->name('egreso.index');
     Route::get('/egresos/atv',[ EgresoPorMotos::class, 'index'])->name('egresoX.Moto');
+    Route::get('/escritorio',[ EscritorioController::class, 'index'])->name('escritorio.index');
+
 
 
 });

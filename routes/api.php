@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\EgresoController;
-
+use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MotosController;
@@ -41,6 +41,9 @@ Route::delete('/egresoAtv/{egreso}',[ EgresoController::class, 'destroy']);
 Route::get('/egresoAtv',[ EgresoController::class, 'index']);
 Route::get('/egresos',[ EgresoController::class, 'datosCompletosEgresos']);
 Route::get('/generar-pdf',[ EgresoController::class, 'generarPdf' ])->name('generar.pdf');
+
+//!Api chart
+Route::get('/egresosyear',[ HomeController::class, 'egresosPorYear' ]);
 
 
 

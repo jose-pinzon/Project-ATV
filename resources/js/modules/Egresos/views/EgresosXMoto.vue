@@ -79,11 +79,7 @@
                         id="exampleFormControlReadonly" readonly>
                 </div>
 
-                <div  class="form-group contentenido-cuentas">
-                    <label for="exampleFormControlReadonly">Ganancia</label>
-                    <input class="form-control" type="text" :value="totalGanancias"
-                        id="exampleFormControlReadonly" readonly>
-                </div>
+
 
 
                 <button class="btn btn-primary" @click="modalstatus=false">Cerrar</button>

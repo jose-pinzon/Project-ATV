@@ -312,7 +312,7 @@
                     <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-warning">Actualizar</button>
                 </form>
-        </template>
+        </template>**
     </ModalD>
     <!--? Fin del modal para editar -->
 
