@@ -56,7 +56,13 @@
                   <td> 
                       <a :href="'reserva/reporte/'+ ingreso.slug" class="btn btn-sm btn-danger"><i class="fas fa-file-pdf"></i></a>
                   </td>
-                </tr>   
+                  
+                </tr>  
+                <tr>
+                  <td colspan="5"></td>
+                  <th >Total de ingresos: </th>
+                  <th>$ {{SumIngresos}}</th>
+                </tr> 
               </tbody>
               <tbody v-else>
                   <tr colspan="10"> 
@@ -132,7 +138,8 @@
             },
             moment:function(){
                 return moment();
-            }
+            },
+            sumaIngresos:0.0
           }
       },
   
@@ -176,7 +183,8 @@
         //fin metodos para la paginacion 
         filtrarRango(){
           if(!this.fecha_inicial && !this.fecha_final){
-            return this.ingresos;
+
+             return this.ingresos;
            
           }else{
             
@@ -184,6 +192,18 @@
          
           }
         },
+
+        SumIngresos(){
+          var suma = 0.0;
+
+          for (let index = 0; index < this.ingresos.length; index++) {
+              suma += this.ingresos[index].total;
+          }
+
+          this.sumaIngresos = suma;
+
+          return this.sumaIngresos;
+        }
       },
   
       methods:{

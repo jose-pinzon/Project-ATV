@@ -72,12 +72,14 @@
           <i class="fas fa-fw fa-palette"></i>
           <span>Motos</span>
         </a>
-      </li>
+    </li>
 
     <li class="nav-item" >
-        <a class="nav-link"  href="{{route('clientes')}}">
+      <a class="nav-link"  href="{{route('clientes')}}">
+        <i class="fas fa-fw fa-palette"></i>
         <span>Clientes</span>
-    </li>
+      </a>
+   </li>
 
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('guias')}}">
