@@ -140,7 +140,7 @@
 
                         <select class="form-control"  :class="{ 'is-invalid' : Errores.color}" id="exampleFormControlSelect1" v-model="DatosGuardar.color">
                             <option value="">Elige un color</option>
-                            <option value="Amarrilla">Amarrilla</option>
+                            <option value="Amarilla">Amarrilla</option>
                             <option value="Roja">Roja</option>
                             <option value="Verde">Verde</option>
                         </select>
@@ -300,11 +300,20 @@
 
                     <div class="form-group">
                         <label for="exampleInputEmail1"> Color </label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="escriba aqui..." v-model="detallesMoto.color">
-                        <small v-show="!detallesMoto.color" class="font-weight-bold text-warning   form-text ">
+
+                        <select class="form-control"  :class="{ 'is-invalid' : Errores.color}" id="exampleFormControlSelect1" v-model="detallesMoto.color">
+                            <option value="">Elige un color</option>
+                            <option value="Amarilla">Amarrilla</option>
+                            <option value="Roja">Roja</option>
+                            <option value="Verde">Verde</option>
+                        </select>
+
+
+
+                        <small v-show="!detallesMoto.color " class="font-weight-bold text-warning  form-text ">
                             Color obligatorio
                         </small>
+
                         <small v-if="Errores.color" class="font-weight-bold text-warning   form-text ">
                             {{Errores.color[0]}}
                         </small>

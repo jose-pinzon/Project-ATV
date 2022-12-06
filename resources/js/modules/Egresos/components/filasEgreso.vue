@@ -6,6 +6,7 @@
                         <td>{{egreso.gasto}}</td>
                         <td>{{egreso.cantidad}} Pesos</td>
                         <td>{{egreso.moto.numero_Atv}} - {{egreso.moto.color}}</td>
+                        <!-- <td></td> -->
                         <td>
                             <moment :fecha="egreso.fecha"></moment>
                         </td>

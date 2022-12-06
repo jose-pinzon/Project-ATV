@@ -28,7 +28,7 @@ export default {
     },
     computed:{
         imagenMostrar(){
-          return `/storage/motos/${this.moto.imagen}`
+            return `/storage/motos/${this.moto.imagen}`
         }
     }
 

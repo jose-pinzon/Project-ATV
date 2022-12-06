@@ -24,7 +24,7 @@ class CreateMotosTable extends Migration
             $table->string('marca');
             $table->string('modelo');
             $table->string('color');
-            $table->string('imagen');
+            $table->string('imagen')->nullable();
             $table->boolean('activa')->default(true);
             $table->timestamps();
         });

@@ -23,7 +23,8 @@ class MotosSeeder extends Seeder
             'propietario' => 'Rodriguez',
             'marca' => 'Toyota',
             'modelo'=> 'serie 216',
-            'color'=> 'Verde'
+            'color'=> 'Verde',
+            'imagen'=>null
         ]);
 
         Motos::create([
@@ -35,7 +36,8 @@ class MotosSeeder extends Seeder
             'propietario' => 'Jorge',
             'marca' => 'Dinamo',
             'modelo'=> '33FD',
-            'color'=> 'Roja'
+            'color'=> 'Roja',
+            'imagen'=>null
         ]);
 
         Motos::create([
@@ -47,7 +49,8 @@ class MotosSeeder extends Seeder
             'propietario' => 'José',
             'marca' => 'Italika',
             'modelo'=> '23FSSDF',
-            'color'=> 'Roja'
+            'color'=> 'Roja',
+            'imagen'=>null
         ]);
 
         Motos::create([
@@ -59,7 +62,8 @@ class MotosSeeder extends Seeder
             'propietario' => 'Gonzales',
             'marca' => 'Italika',
             'modelo'=> '23FSSDF',
-            'color'=> 'Roja'
+            'color'=> 'Roja',
+            'imagen'=>null
         ]);
 
         Motos::create([
@@ -71,45 +75,10 @@ class MotosSeeder extends Seeder
             'propietario' => 'Perez',
             'marca' => 'Italika',
             'modelo'=> '89BDAS',
-            'color'=> 'Amarilla'
+            'color'=> 'Amarilla',
+                'imagen'=>null
         ]);
 
 
-        Motos::create([
-            'numero_Atv' => 6,
-            'max_velocidad' => 40,
-            'placa' => 'JBS-77-85',
-            'num_serie' => 'NDBJAIUVSADS',
-            'num_motor'=> 'HNCOOALDSS',
-            'propietario' => 'José',
-            'marca' => 'Italika',
-            'modelo'=> '23FSSDF',
-            'color'=> 'Amarilla'
-        ]);
-
-
-        Motos::create([
-            'numero_Atv' => 7,
-            'max_velocidad' => 50,
-            'placa' => 'WLU-99-81',
-            'num_serie' => '9SBBDAKLSCASD',
-            'num_motor'=> 'HJCBIIABSD',
-            'propietario' => 'Gabriel',
-            'marca' => 'Toyota',
-            'modelo'=> '23FSSDF',
-            'color'=> 'Roja'
-        ]);
-
-        Motos::create([
-            'numero_Atv' => 8,
-            'max_velocidad' => 35,
-            'placa' => 'WjU-94-69',
-            'num_serie' => 'CDAIDADASKDUIAS',
-            'num_motor'=> 'NCLJKAKLSDHAJKLB',
-            'propietario' => 'Guadalupe',
-            'marca' => 'Toyota',
-            'modelo'=> 'DASAW',
-            'color'=> 'Roja'
-        ]);
     }
 }

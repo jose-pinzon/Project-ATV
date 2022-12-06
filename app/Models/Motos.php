@@ -20,8 +20,8 @@ class Motos extends Model
         'marca',
         'modelo',
         'color',
-        'imagen',
-        'activa'
+        'activa',
+        'imagen'
     ];
 
     public function egresos(){
