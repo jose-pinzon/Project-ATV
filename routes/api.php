@@ -36,7 +36,7 @@ Route::post('/motos/{motos}',[MotosController::class, 'cambiarEstado']);
 
 
 
-Route::post('/egresoAtv',[ EgresoController::class, 'store']);
+Route::post('/egresoAtv/create',[ EgresoController::class, 'store']);
 Route::delete('/egresoAtv/{egreso}',[ EgresoController::class, 'destroy']);
 Route::get('/egresoAtv',[ EgresoController::class, 'index']);
 Route::get('/egresos',[ EgresoController::class, 'datosCompletosEgresos']);

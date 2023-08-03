@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Login</title>
+  <title>Project-ATV</title>
   <link href="plantilla/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="plantilla/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="plantilla/css/ruang-admin.min.css" rel="stylesheet">

@@ -60,10 +60,10 @@ class MotosController extends Controller
      */
     public function create()
     {
-        $MotosAll = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->get());
-        $MotosAmarillas = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Amarilla')->get());
-        $MotosRojas = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Roja')->get());
-        $MotosVerdes = MotosResource::collection(Motos::with(['egresos','ingresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Verde')->get());
+        $MotosAll = MotosResource::collection(Motos::with(['egresos'])->orderBy('id', 'DESC')->where('activa', 1)->get());
+        $MotosAmarillas = MotosResource::collection(Motos::with(['egresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Amarilla')->get());
+        $MotosRojas = MotosResource::collection(Motos::with(['egresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Roja')->get());
+        $MotosVerdes = MotosResource::collection(Motos::with(['egresos'])->orderBy('id', 'DESC')->where('activa', 1)->where('color', 'Verde')->get());
         return Response()->json([
             'MotosAll' =>$MotosAll,
             'MotosAmarillas' =>$MotosAmarillas,

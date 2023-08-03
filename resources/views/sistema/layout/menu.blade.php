@@ -19,7 +19,7 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
         aria-controls="collapseForm">
-        <i class="fab fa-fw fa-wpforms"></i>
+        <i class="fas fa-cogs"></i>
         <span>Egresos</span>
       </a>
       <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
@@ -36,7 +36,7 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable2" aria-expanded="true"
         aria-controls="collapseTable">
-        <i class="fas fa-fw fa-columns"></i>
+        <i class="far fa-clock"></i>
         <span>Reservas</span>
       </a>
       <div id="collapseTable2" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -51,7 +51,7 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable3" aria-expanded="true"
         aria-controls="collapseTable">
-        <i class="fas fa-fw fa-columns"></i>
+        <i class="fa fa-credit-card"></i>
         <span>Ingresos</span>
       </a>
       <div id="collapseTable3" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
@@ -69,28 +69,28 @@
     </div>
     <li class="nav-item" >
         <a class="nav-link"  href="{{route('moto.index')}}">
-          <i class="fas fa-fw fa-palette"></i>
+          <i class="fa fa-motorcycle"></i>
           <span>Motos</span>
         </a>
     </li>
 
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('clientes')}}">
-        <i class="fas fa-fw fa-palette"></i>
+        <i class="fa fa-male" style="font-size:17px"></i>
         <span>Clientes</span>
       </a>
    </li>
 
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('guias')}}">
-        <i class="fas fa-fw fa-palette"></i>
+        <i class="fa fa-map-signs"></i>
         <span>Guias</span>
       </a>
     </li>
 
     <li class="nav-item" >
       <a class="nav-link"  href="{{route('servicios')}}">
-        <i class="fas fa-fw fa-palette"></i>
+        <i class="fas fa-concierge-bell"></i>
         <span>Servicios</span>
       </a>
     </li>

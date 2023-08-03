@@ -5585,6 +5585,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _Guias_Guia_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Guias/Guia.vue */ "./resources/js/modules/Guias/Guia.vue");
 //
 //
 //
@@ -5769,7 +5770,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    GuiaVue: _Guias_Guia_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       clientes: [],
@@ -5806,7 +5814,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    //metodo para la paginacion 
+    //metodo para la paginacion
     isActived: function isActived() {
       return this.pagination.current_page;
     },
@@ -5836,7 +5844,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return pagesArray;
-    } //fin metodos para la paginacion 
+    } //fin metodos para la paginacion
 
   },
   methods: {
@@ -5853,7 +5861,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //metodo paginaion 
+    //metodo paginaion
     cambiarPagina: function cambiarPagina(page, criterio, buscar) {
       var me = this; //actualiza la pagina actual
 
@@ -5996,6 +6004,10 @@ __webpack_require__.r(__webpack_exports__);
         // handle error
         console.log(error);
       });
+    },
+    event: function event() {
+      var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+      console.log(this.$emit('datos', data)); //window.location.href='/guias';
     }
   },
   mounted: function mounted() {
@@ -7778,7 +7790,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    datos: {
+      "typeof": Array,
+      require: true
+    }
+  },
   data: function data() {
     return {
       guias: [],
@@ -7816,7 +7836,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    //metodo para la paginacion 
+    //metodo para la paginacion
     isActived: function isActived() {
       return this.pagination.current_page;
     },
@@ -7846,7 +7866,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       return pagesArray;
-    } //fin metodos para la paginacion 
+    } //fin metodos para la paginacion
 
   },
   methods: {
@@ -7863,7 +7883,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //metodo paginaion 
+    //metodo paginaion
     cambiarPagina: function cambiarPagina(page, criterio, buscar) {
       var me = this; //actualiza la pagina actual
 
@@ -9890,7 +9910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var pokemonApi = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-  baseURL: 'http://project-atv.test/api'
+  baseURL: 'http://project-atv.test.192.168.1.104.nip.io/api'
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (pokemonApi);
 
@@ -56881,35 +56901,54 @@ var render = function () {
                           ]),
                         ]),
                         _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-primary",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.DetallesCliente(cliente)
+                        _c(
+                          "td",
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-primary",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.DetallesCliente(cliente)
+                                  },
                                 },
                               },
-                            },
-                            [_vm._v("Detales")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-sm btn-warning",
-                              attrs: { type: "button" },
-                              on: {
-                                click: function ($event) {
-                                  return _vm.editCliente(cliente)
+                              [_vm._v("Detales")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-warning",
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.editCliente(cliente)
+                                  },
                                 },
                               },
-                            },
-                            [_vm._v("Editar")]
-                          ),
-                        ]),
+                              [_vm._v("Editar")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                attrs: { type: "button" },
+                                on: {
+                                  click: function ($event) {
+                                    return _vm.event(cliente)
+                                  },
+                                },
+                              },
+                              [_vm._v("Event")]
+                            ),
+                            _vm._v(" "),
+                            _c("Guia", { on: { datos: cliente } }),
+                          ],
+                          1
+                        ),
                       ])
                     }),
                     0
@@ -61291,6 +61330,7 @@ var render = function () {
         ),
       ]
     ),
+    _vm._v("\n\n  aRRAY: " + _vm._s(_vm.datos) + "\n\n"),
   ])
 }
 var staticRenderFns = [

@@ -48,6 +48,9 @@ Route::get('/clients', [App\Http\Controllers\ClienteController::class, 'index'])
 Route::post('/clients/store', [App\Http\Controllers\ClienteController::class, 'store'])->name('cients/store');
 Route::put('/clients/update', [App\Http\Controllers\ClienteController::class, 'update'])->name('cients/update');
 Route::get('/clients/select',[App\Http\Controllers\ClienteController::class,'selectCliente'])->name('clients/select');
+Route::get('/create', function(){
+    return view('sistema.vistas.clientes.create');
+});
 
 //modulo de guias
 Route::get('/guias', [App\Http\Controllers\GuiaController::class, 'returnvista'])->name('guias');
@@ -101,3 +104,4 @@ Route::post('ingresos/reporte/consulta', [App\Http\Controllers\PdfIngresoControl
 
 });
 
+Route::get('/semana', [App\Http\Controllers\ReservaController::class, 'semana'])->name('semana');

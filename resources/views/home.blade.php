@@ -15,7 +15,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
-                       <a href="{{route('generar.pdf')}}">Checar pdf</a>
+                       <a href="{{route('generar.pdf')}}">Checar pdf O</a>
                 </div>
             </div>
         </div>

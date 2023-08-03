@@ -6,7 +6,7 @@
           <h6 class="m-0 font-weight-bold text-primary">Clientes frecuentes</h6>
         </div>
         <div class="table-responsive">
-          
+
           <div class="form-group row" id="navegador">
               <div class="col-md-6">
                   <div class="input-group">
@@ -14,7 +14,7 @@
                         <option value="nombres">Nombre</option>
                         <option value="apellidos">Apellido</option>
                       </select>
-                      <input type="text" class="form-control" placeholder="Texto a buscar" v-model="buscar" 
+                      <input type="text" class="form-control" placeholder="Texto a buscar" v-model="buscar"
                       @keyup.enter="getclientes(1, criterio, buscar)">
                       <button type="button" @click="getclientes(1, criterio, buscar)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                       <button class="btn btn-info" @click="createCliente()">Nuevo</button>
@@ -41,8 +41,10 @@
                 <td>
                     <button type="button" @click="DetallesCliente(cliente)" class="btn btn-sm btn-primary">Detales</button>
                     <button type="button" @click="editCliente(cliente)" class="btn btn-sm btn-warning">Editar</button>
+                    <button type="button" @click="event(cliente)">Event</button>
+                    <Guia @datos="cliente" ></Guia>
                 </td>
-              </tr> 
+              </tr>
             </tbody>
           </table>
           <nav id="navegador">
@@ -55,7 +57,7 @@
                   <li class="page-item " v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
                       <a class="page-link" href="#" @click.prevent="cambiarPagina(page,criterio, buscar)" v-text="page"></a>
                   </li>
-                
+
                   <li class="page-item" v-if="pagination.current_page < pagination.last_page">
                       <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1, criterio, buscar)">Sig</a>
                   </li>
@@ -63,9 +65,9 @@
           </nav>
         </div>
     </div>
-    
+
     <div  v-if="form==1">
-     
+
         <div class="card mb-3">
           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary" v-if="bandera==1">Nuevo cliente</h6>
@@ -73,17 +75,17 @@
           </div>
             <center><p style="color:red" v-show="error" v-for="error in arrayError" :key="error">{{error}}</p></center>
           <div class="card-body">
-          
+
               <div class="form-row">
                 <div class="col">
                   <label for="exampleInputPassword1">Nombres</label>
                   <input type="text" class="form-control" placeholder="Nombres" v-model="nombres">
-                  
+
                 </div>
                 <div class="col">
                   <label for="exampleInputPassword1">Apellidos</label>
                   <input type="text" class="form-control" placeholder="Apellidos" v-model="apellidos">
-                  
+
                 </div>
               </div>
 
@@ -91,7 +93,7 @@
                 <div class="col">
                   <label for="exampleInputPassword1">Telefono</label>
                   <input type="text" class="form-control" maxlength="10" placeholder="- - - - - - - - - -" v-model="telefono">
-                 
+
                 </div>
                 <div class="col">
                   <label for="exampleInputPassword1">Email</label>
@@ -115,7 +117,7 @@
                   <label for="exampleInputPassword1">Ciudad</label>
                   <input type="text" class="form-control" placeholder="Ciudad" v-model="ciudad">
                 </div>
-                
+
               </div>
 
               <hr>
@@ -127,7 +129,7 @@
           </div>
         </div>
     </div>
-    </div> 
+    </div>
 
     <!-- Modal detalles-->
     <div class="modal fade" id="detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -146,7 +148,7 @@
                 <table class="table table-striped">
                     <tbody>
                       <tr>
-                        <th>Nombre: {{nombres}}</th> 
+                        <th>Nombre: {{nombres}}</th>
                       </tr>
                       <tr>
                         <th>Apellidos: {{apellidos}}</th>
@@ -179,11 +181,17 @@
       </div>
     </div>
 
+
   </div>
 </template>
 
 <script>
+import GuiaVue from '../Guias/Guia.vue';
+
 export default {
+    components:{
+        GuiaVue
+    },
     data(){
         return{
           clientes:[],
@@ -220,7 +228,7 @@ export default {
         }
     },
     computed:{
-       //metodo para la paginacion 
+       //metodo para la paginacion
        isActived: function(){
                 return this.pagination.current_page;
             },
@@ -250,7 +258,7 @@ export default {
                 return pagesArray;
 
             },
-            //fin metodos para la paginacion 
+            //fin metodos para la paginacion
     },
     methods:{
         getclientes(page, criterio, buscar){
@@ -271,7 +279,7 @@ export default {
               console.log(error);
             });
         },
-         //metodo paginaion 
+         //metodo paginaion
         cambiarPagina(page, criterio, buscar){
               let me = this;
               //actualiza la pagina actual
@@ -290,11 +298,11 @@ export default {
         validarInputs(){
           this.error = 0;
           this.arrayError = [];
-          
+
           if(!this.nombres) this.arrayError.push('los nombres son requeridos');
           if(!this.apellidos) this.arrayError.push('los apellidos son requeridos');
-          if(!this.telefono) this.arrayError.push('El telefono es requeridos');       
-          
+          if(!this.telefono) this.arrayError.push('El telefono es requeridos');
+
           if(this.arrayError.length) this.error=1;
 
           return this.error;
@@ -306,7 +314,7 @@ export default {
             return;
           }
 
-          let e = this;  
+          let e = this;
           let url = '/clients/store';
           var arrayCliente = {
             'nombres':this.nombres,
@@ -393,7 +401,7 @@ export default {
             return;
           }
 
-          let e = this;  
+          let e = this;
           let url = '/clients/update';
           var arrayCliente = {
             'nombres':this.nombres,
@@ -424,8 +432,13 @@ export default {
             // handle error
             console.log(error);
           });
+        },
+        event(data=[]){
+            console.log(this.$emit('datos', data));
+            //window.location.href='/guias';
+
         }
-        
+
     },
     mounted(){
       this.getclientes(1,this.criterio,this.buscar);

@@ -143,4 +143,19 @@ class ReservaController extends Controller
         $reserva->update();
     }
 
+    public function semana(){
+
+       // Obtener la fecha actual
+        $fechaActual = Carbon::now();
+
+        // Obtener el primer día de la semana (lunes)
+        $primerDiaSemana = $fechaActual->startOfWeek()->format('Y-m-d');
+
+        // Obtener el último día de la semana (domingo)
+        dd($ultimoDiaSemana = $fechaActual->endOfWeek()->format('Y-m-d'));
+
+
+
+    }
+
 }

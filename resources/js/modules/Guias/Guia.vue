@@ -6,7 +6,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Guias</h6>
           </div>
           <div class="table-responsive">
-            
+
             <div class="form-group row" id="navegador">
                 <div class="col-md-6">
                     <div class="input-group">
@@ -14,14 +14,14 @@
                           <option value="nombres">Nombre</option>
                           <option value="apellidos">Apellido</option>
                         </select>
-                        <input type="text" class="form-control" placeholder="Texto a buscar" v-model="buscar" 
+                        <input type="text" class="form-control" placeholder="Texto a buscar" v-model="buscar"
                         @keyup.enter="getGuia(1, criterio, buscar)">
                         <button type="button" @click="getGuia(1, criterio, buscar)" class="btn btn-primary"><i class="fa fa-search"></i> Buscar</button>
                         <button class="btn btn-info" @click="createGuia()">Nuevo</button>
                     </div>
                 </div>
             </div>
-  
+
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
                 <tr>
@@ -40,21 +40,21 @@
                   <td>{{guia.apellidos}}</td>
                   <td><span class="badge badge-success">{{guia.telefono}}</span></td>
                   <template v-if="guia.estado">
-                 
+
                         <td class="estado" @click="desactivar(guia.id_guia)"><span class="badge badge-success">Activo</span></td>
-                 
+
                   </template>
                   <template v-else>
-                
+
                         <td class="estado" @click="activar(guia.id_guia)"><span class="badge badge-danger">Inactivo</span></td>
-           
+
                   </template>
 
                   <td>
                       <button type="button" @click="DetallesGuia(guia)" class="btn btn-sm btn-primary">Detales</button>
                       <button type="button" @click="editGuia(guia)" class="btn btn-sm btn-warning">Editar</button>
                   </td>
-                </tr> 
+                </tr>
               </tbody>
             </table>
             <nav id="navegador">
@@ -63,11 +63,11 @@
                     <li class="page-item" v-if="pagination.current_page > 1">
                         <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page - 1, criterio, buscar)">Ant</a>
                     </li>
-  
+
                     <li class="page-item " v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active' : '']">
                         <a class="page-link" href="#" @click.prevent="cambiarPagina(page,criterio, buscar)" v-text="page"></a>
                     </li>
-                  
+
                     <li class="page-item" v-if="pagination.current_page < pagination.last_page">
                         <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page + 1, criterio, buscar)">Sig</a>
                     </li>
@@ -75,9 +75,9 @@
             </nav>
           </div>
       </div>
-      
+
       <div  v-if="form==1">
-       
+
           <div class="card mb-3">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
               <h6 class="m-0 font-weight-bold text-primary" v-if="bandera==1">Nuevo guia</h6>
@@ -85,39 +85,39 @@
             </div>
               <center><p style="color:red" v-show="error" v-for="error in arrayError" :key="error">{{error}}</p></center>
             <div class="card-body">
-            
+
                 <div class="form-row">
                   <div class="col">
                     <label for="exampleInputPassword1">Nombres</label>
                     <input type="text" class="form-control" placeholder="Nombres" v-model="nombres">
-                    
+
                   </div>
                   <div class="col">
                     <label for="exampleInputPassword1">Apellidos</label>
                     <input type="text" class="form-control" placeholder="Apellidos" v-model="apellidos">
-                    
+
                   </div>
                 </div>
-  
+
                 <div class="form-row">
                   <div class="col">
                     <label for="exampleInputPassword1">Telefono</label>
                     <input type="text" class="form-control" maxlength="10" placeholder="- - - - - - - - - -" v-model="telefono">
-                   
+
                   </div>
                   <div class="col">
                     <label for="exampleInputPassword1">Email</label>
                     <input type="email" class="form-control" placeholder="@correo.com" v-model="email">
                   </div>
                 </div>
-  
+
                 <div class="form-row">
                   <div class="col">
                     <label for="exampleInputPassword1">Edad</label>
                     <input type="number" class="form-control" placeholder="Edad" v-model="edad">
                   </div>
                   <div class="col">
-                    <label for="exampleInputPassword1">Igles</label>       
+                    <label for="exampleInputPassword1">Igles</label>
                        <select name="" id="" class="form-control" v-model="ingles">
                         <option value="" disabled>Elige una opción</option>
                         <option value="SI">SI</option>
@@ -129,23 +129,23 @@
                 <div class="form-row">
                   <div class="col">
                     <label for="exampleInputPassword1">Dirección</label>
-                    <input type="text" class="form-control" placeholder="Domicilio" v-model="direccion">      
+                    <input type="text" class="form-control" placeholder="Domicilio" v-model="direccion">
                   </div>
-             
+
                 </div>
-  
-  
+
+
                 <hr>
                 <button class="btn btn-danger" @click="cancelar()">Cancelar</button>
-  
+
                 <button class="btn btn-primary" @click="storeGuia()" v-if="bandera==1">Registrar</button>
                 <button class="btn btn-primary"  v-if="bandera==2" @click="updateGuia()">Actualizar</button>
-  
+
             </div>
           </div>
       </div>
-      </div> 
-  
+      </div>
+
       <!-- Modal detalles-->
       <div class="modal fade" id="detalles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -163,7 +163,7 @@
                   <table class="table table-striped">
                       <tbody>
                         <tr>
-                          <th>Nombre: {{nombres}}</th> 
+                          <th>Nombre: {{nombres}}</th>
                         </tr>
                         <tr>
                           <th>Apellidos: {{apellidos}}</th>
@@ -195,12 +195,21 @@
           </div>
         </div>
       </div>
-  
+
+      aRRAY: {{ datos }}
+
     </div>
   </template>
-  
-  <script>  
+
+  <script>
   export default {
+        props:{
+            datos:{
+                typeof:Array,
+                require:true
+            }
+        },
+
       data(){
           return{
             guias:[],
@@ -238,7 +247,7 @@
           }
       },
       computed:{
-             //metodo para la paginacion 
+             //metodo para la paginacion
              isActived: function(){
                   return this.pagination.current_page;
               },
@@ -247,41 +256,41 @@
                   if(!this.pagination.to){
                       return [];
                   }
-  
+
                   var from = this.pagination.current_page - this.offset;
-  
+
                   if(from < 1){
                       from = 1;
                   }
-  
+
                   var to = from + (this.offset * 2);
                   if(to >= this.pagination.last_page){
                       to = this.pagination.last_page;
                   }
-  
+
                   var pagesArray = [];
                   while(from <= to){
                       pagesArray.push(from);
                       from++;
                   }
-  
+
                   return pagesArray;
-  
+
               },
-              //fin metodos para la paginacion 
+              //fin metodos para la paginacion
 
       },
       methods:{
           getGuia(page, criterio, buscar){
               let e = this;
               let url = '/guias/index?page=' + page + '&buscar=' + buscar + '&criterio=' + criterio;
-  
+
               axios.get(url).then(function (response) {
                 // handle success
                 var respuesta = response.data;
-  
+
                 e.guias = respuesta.guias.data;
-  
+
                 e.pagination = respuesta.pagination;
                 //console.log(response.data);
               })
@@ -290,12 +299,12 @@
                 console.log(error);
               });
           },
-           //metodo paginaion 
+           //metodo paginaion
           cambiarPagina(page, criterio, buscar){
                 let me = this;
                 //actualiza la pagina actual
                 me.pagination.current_page = page;
-  
+
                 //envia la peticion para visualizar la data en la vista
                 //el page lo recibe el metodo de lista cat
                 me.getGuia(page, criterio, buscar);
@@ -309,27 +318,27 @@
           validarInputs(){
             this.error = 0;
             this.arrayError = [];
-            
+
             if(!this.nombres) this.arrayError.push('los nombres son requeridos');
             if(!this.apellidos) this.arrayError.push('los apellidos son requeridos');
-            if(!this.telefono) this.arrayError.push('El telefono es requeridos');     
+            if(!this.telefono) this.arrayError.push('El telefono es requeridos');
             if(!this.edad) this.arrayError.push('La edad es requerido');
-            if(this.edad < 18) this.arrayError.push('Tiene que ser mayor de 18');  
-            
+            if(this.edad < 18) this.arrayError.push('Tiene que ser mayor de 18');
+
             if(this.arrayError.length) this.error=1;
-  
+
             return this.error;
             //console.log(this.arrayError)
-  
+
           },
-          
+
           storeGuia(){
-            
+
             if(this.validarInputs()){
               return;
             }
-             
-            let e = this;  
+
+            let e = this;
             let url = '/guias/store';
             var arrayGuia = {
               'nombres':this.nombres,
@@ -352,13 +361,13 @@
               e.form=0;
               e.table=1;
               e.getGuia(1,e.criterio,'');
-  
+
             })
             .catch(function (error) {
               // handle error
               console.log(error);
             });
-  
+
           },
           cancelar(){
             const e = this;
@@ -409,16 +418,16 @@
             this.direccion = data['direccion'];
             this.edad = data['edad'];
             this.ingles = data['ingles'];
-  
+
           },
           updateGuia(){
             if(this.validarInputs()){
               return;
             }
-  
-            let e = this;  
+
+            let e = this;
             let url = '/guias/update';
-    
+
             var arrayGuia = {
               'nombres':this.nombres,
               'apellidos':this.apellidos,
@@ -442,7 +451,7 @@
               e.form=0;
               e.table=1;
               e.getGuia(1,e.criterio,'');
-  
+
             })
             .catch(function (error) {
               // handle error
@@ -450,16 +459,16 @@
             });
           },
           desactivar(id){
-            let e = this;  
+            let e = this;
             let url = '/guias/desactivar';
-    
+
             var arrayGuia = {
               'id_guia':id
             };
             axios.put(url, arrayGuia).then(function (response) {
               // handle success
               e.getGuia(1,e.criterio,'');
-  
+
             })
             .catch(function (error) {
               // handle error
@@ -467,30 +476,30 @@
             });
           },
           activar(id){
-            let e = this;  
+            let e = this;
             let url = '/guias/activar';
-    
+
             var arrayGuia = {
               'id_guia':id
             };
             axios.put(url, arrayGuia).then(function (response) {
               // handle success
               e.getGuia(1,e.criterio,'');
-  
+
             })
             .catch(function (error) {
               // handle error
               console.log(error);
             });
           }
-          
+
       },
       mounted(){
         this.getGuia(1,this.criterio,this.buscar);
       },
   }
   </script>
-  
+
   <style>
     #navegador{
       margin-left: 20px;
@@ -502,5 +511,4 @@
         cursor: pointer;
     }
   </style>
-  
-  
+
